@@ -1,13 +1,13 @@
 ## Auxilio
 
-### by Robert Bruce
+#### by Robert Bruce
 
 ### Project Proposal
 
-Auxilio is here to help you manage your workforce. It provides a platform for you to effectively manage and coordinate your constituents. Auxilio does this through the use of: 
+Auxilio is here to help you manage your workforce. It provides you with a platform to effectively manage and coordinate your constituents. Auxilio accomplishes this through the use of: 
   * Organization of consitituents into **_departments_**
   * Delegation of responsibilities via the promotion of individuals to 'Department Leads' or 'Organization Leads'
-  * Form creation, enabling the collection of information necessary to running your Org
+  * Custom forms, enabling the collection of information necessary to running your Org
   * Forum/message board to broadcast _**updates**_
       * Updates can contain forms, written content or documents 
       * Updates serve as a clear timeline of communication
@@ -62,6 +62,10 @@ Only Manager and those in the Admins department can add posts to the Organizatio
   * Can register for a volunteer job/position during the registration window
   * Can comment on posts made by managers or department leads
 
+
+### Proposed Project Layout
+
+![project_layout](./src/assets/images/auxilio_visual_layout.jpg "proposed project page layout")
 
 ### What tools, frameworks, libraries, APIs, modules and/or other resources (whatever is specific to your track, and your language) will you use to create this MVP? List them all here. Be specific.
 * React
