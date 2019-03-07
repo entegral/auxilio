@@ -11,18 +11,27 @@ function Header () {
   }
   
   const headerStyle = {
-    margin: '5px 5px 5px 20px'
+    margin: '5px 5px 5px 20px',
+
+  }
+
+  const headerAnchorStyle = {
+    textDecoration: 'none',
+    color: 'black'
+
   }
 
   const linkStyle = {
     float: 'left',
-    margin: '10px'
+    margin: '0px 20px 0px 0px',
+    textDecoration: 'none',
+    color: 'black'
   }
   
   return (
     <div style={bannerStyle}>
       <div>
-        <h2 style={headerStyle}>Auxilio</h2>
+        <h2 style={headerStyle} > <a style={headerAnchorStyle} href="/#/profile">Auxilio</a> </h2>
       </div>
 
       <div>
