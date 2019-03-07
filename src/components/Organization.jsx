@@ -14,7 +14,7 @@ function Organization () {
 
   return (
     <React.Fragment>
-      <h4 style = {orgHeaderStyle}>[OrganizationTitle] Communications Page</h4>  
+      <h1 style = {orgHeaderStyle}>[OrganizationTitle] Communications Page</h1>  
       <div style={listStyleParent}>
         <OrgUpdateList/>
         <OrgLeadList />
