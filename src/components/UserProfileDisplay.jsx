@@ -4,7 +4,8 @@ function UserProfileDisplay () {
 
   const cardStyle = {
     backgroundColor: '#838383',
-    padding: '0px 10px 10px 10px'
+    padding: '0px 10px 10px 10px',
+    margin: '20px'
   }
 
   return (

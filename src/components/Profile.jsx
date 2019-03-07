@@ -7,11 +7,13 @@ function Profile () {
 
   const componentStyle = {
     display: 'flex',
-    justifyContent: 'space-around'
+    justifyContent: 'space-around',
+    flexWrap: 'wrap'
   }
 
   const divColumnStyle = {
-    float: 'left',
+    margin: '10px',
+    color: 'red'
     // border: '1px solid grey',
   }
 
@@ -19,10 +21,7 @@ function Profile () {
     <div style={componentStyle}>
       <UserProfileDisplay style={divColumnStyle}/>
 
-      
       <UserOrgDisplay style={divColumnStyle}/>
-      
-
       
       <UserJobDisplay style={divColumnStyle} />
       

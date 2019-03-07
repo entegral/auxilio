@@ -4,7 +4,8 @@ function UserJobDisplay() {
 
   const cardStyle = {
     backgroundColor: '#838383',
-    padding: '0px 10px 10px 10px'
+    padding: '0px 10px 10px 10px',
+    margin: '20px'
   }
 
   {/* TODO: Map through all jobs associated with the user in this section to act as an overview of all activity */ }
