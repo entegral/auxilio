@@ -4,17 +4,31 @@ import './index.css';
 import App from './components/App';
 import * as serviceWorker from './serviceWorker';
 import {  HashRouter} from 'react-router-dom'; 
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import authReducer from './reducers/auth-reducer';
 
+const initialState = {
+  userId: {
+    email: '',
+    password: '',
+    uid: ''
+  },
+  userObjModel: {
+    organizations: [],
+    departments: [],
+    jobs: []
+  }
+}
 
-
-// import { createStore } from 'redux';
-
-// const store = createStore(firstReducer)
+const store = createStore(authReducer, initialState);
 
 const render = (Component) => {
     ReactDOM.render(
         < HashRouter > 
-          <Component />
+          <Provider store={store}>
+            <Component />
+          </Provider>
         </HashRouter>,
     document.getElementById('root')
   );
