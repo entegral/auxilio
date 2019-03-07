@@ -1,16 +1,11 @@
 import React from 'react'
+import { listStyleChild } from './helpers/jsStyleObjects';
 
 function UserProfileDisplay () {
 
-  const cardStyle = {
-    backgroundColor: '#838383',
-    padding: '0px 10px 10px 10px',
-    margin: '20px'
-  }
-
   return (
     <React.Fragment>
-      <div style={cardStyle}>
+      <div style={listStyleChild}>
         <h3>User Data</h3>
         <p>First + Last Name</p>
         <p>email</p>
