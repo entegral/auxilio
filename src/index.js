@@ -3,8 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './components/App';
 import * as serviceWorker from './serviceWorker';
-import Header from './components/Header'; 
-import {  HashRouter,  Route} from 'react-router-dom'; 
+import {  HashRouter} from 'react-router-dom'; 
 
 
 
