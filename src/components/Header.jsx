@@ -1,7 +1,4 @@
 import React from 'react'
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
-
-
 
 function Header () {
   
@@ -14,7 +11,7 @@ function Header () {
   }
   
   const headerStyle = {
-    marginLeft: '20px'
+    margin: '5px 5px 5px 20px'
   }
 
   const linkStyle = {
@@ -25,11 +22,12 @@ function Header () {
   return (
     <div style={bannerStyle}>
       <div>
-        <h4 style={headerStyle}>Auxilio</h4>
+        <h2 style={headerStyle}>Auxilio</h2>
       </div>
 
       <div>
         <a style={linkStyle} href='/#/'>Login</a>
+        <a style={linkStyle} href='/#/organizations'>My Orgs</a>
         <a style={linkStyle} href='/#/profile'>Home</a>
       </div>
     </div>
