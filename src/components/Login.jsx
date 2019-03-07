@@ -1,8 +1,7 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
-import {loginUser} from './firebase';
 import { connect } from 'react-redux';
-import { loginAction } from '../actions/authActions';
+import { loginAction, signUpAction } from '../actions/authActions';
 
 class Login extends React.Component {
 
@@ -15,31 +14,29 @@ class Login extends React.Component {
     this.handleEmail = this.handleEmail.bind(this);
     this.handlePassword = this.handlePassword.bind(this);
     this.login = this.login.bind(this);
+    this.createUser = this.createUser.bind(this);
   }
 
   handleEmail(event) {
-    this.setState({...this.state, email: event.target.value})
+    this.setState({...this.state, email: event.target.value});
   }
 
   handlePassword(event){
-    this.setState({ ...this.state, password: event.target.value })
+    this.setState({ ...this.state, password: event.target.value });
   }
 
   login (event) {
     event.preventDefault();
-
     loginAction(this.state.email, this.state.password).then((action)=>{
-      this.props.dispatch(action)
+      this.props.dispatch(action);
     });
+  }
 
-    // const loginCredential = loginUser(this.state.email, this.state.password);
-    // loginCredential.then((content)=>{
-    //   console.log(content.user.uid)
-    //   return <Redirect to='/#/profile' />
-    // }).catch(() => {
-    //   this.setState({email: '', password: ''});
-    //   return <Redirect to='/' />
-    // })
+  createUser (event){
+    event.preventDefault();
+    signUpAction(this.state.email, this.state.password).then((action)=>{
+      this.props.dispatch(action);
+    });
   }
 
   render() {
@@ -77,7 +74,7 @@ class Login extends React.Component {
                 <button onClick={this.login} style={buttonStyle}>Login</button>
               </div>
               <div style={divstyle} >
-                <button style={buttonStyle}> <a href="#">Signup</a> </button> 
+                <button onClick={this.createUser} style={buttonStyle}>Signup</button> 
               </div>
             </form>
           </div>

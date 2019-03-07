@@ -13,6 +13,10 @@ firebase.initializeApp(firebaseConfig);
 
 export function loginUser(email, password){
   const userCredential = firebase.auth().signInWithEmailAndPassword(email, password);
-  console.log(userCredential);
   return userCredential;
 };
+
+export function signUp(email, password) {
+  const userCredential = firebase.auth().createUserWithEmailAndPassword(email, password);
+  return userCredential;
+}
