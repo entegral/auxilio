@@ -62,10 +62,13 @@ Only Manager and those in the Admins department can add posts to the Organizatio
   * Can register for a volunteer job/position during the registration window
   * Can comment on posts made by managers or department leads
 
-
-### Proposed Project Layout
+### Proposed Project View Layout
 
 ![project_layout](./src/assets/images/auxilio_visual_layout.jpg "proposed project page layout")
+
+### Proposed Project Component Tree
+
+![project_layout](./src/assets/images/auxilio_component_tree.jpg "proposed project page layout")
 
 ### What tools, frameworks, libraries, APIs, modules and/or other resources (whatever is specific to your track, and your language) will you use to create this MVP? List them all here. Be specific.
 * React
