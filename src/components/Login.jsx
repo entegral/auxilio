@@ -1,6 +1,8 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import { Redirect } from 'react-router-dom';
 import {loginUser} from './firebase';
+import { connect } from 'react-redux';
+import { loginAction } from '../actions/authActions';
 
 class Login extends React.Component {
 
@@ -25,11 +27,19 @@ class Login extends React.Component {
 
   login (event) {
     event.preventDefault();
-    const loginCredential = loginUser(this.state.email, this.state.password);
-    loginCredential.then((content)=>{
-      console.log(content)
-    })
-    this.setState({email: '', password: ''});
+
+    loginAction(this.state.email, this.state.password).then((action)=>{
+      this.props.dispatch(action)
+    });
+
+    // const loginCredential = loginUser(this.state.email, this.state.password);
+    // loginCredential.then((content)=>{
+    //   console.log(content.user.uid)
+    //   return <Redirect to='/#/profile' />
+    // }).catch(() => {
+    //   this.setState({email: '', password: ''});
+    //   return <Redirect to='/' />
+    // })
   }
 
   render() {
@@ -53,24 +63,34 @@ class Login extends React.Component {
       marginTop: '30px'
     }
 
-    return (
-      <React.Fragment>
-        <div style={componentStyle}>
-          <form style={formStyle}>
-            <div>
-              <h3>Login</h3>
-              <input type="text" value = {this.state.email} onChange={this.handleEmail} placeholder='email'/><br/>
-              <input type="password" value={this.state.password} onChange={this.handlePassword} placeholder='password'/><br/>
-              <button onClick={this.login} style={buttonStyle}>Login</button>
-            </div>
-            <div style={divstyle} >
-              <button style={buttonStyle}> <a href="#">Signup</a> </button> 
-            </div>
-          </form>
-        </div>
-      </React.Fragment>
-    );
+    if (this.props.uid){
+      return <Redirect to='/profile' />
+    } else {
+      return (
+        <React.Fragment>
+          <div style={componentStyle}>
+            <form style={formStyle}>
+              <div>
+                <h3>Login</h3>
+                <input type="text" value = {this.state.email} onChange={this.handleEmail} placeholder='email'/><br/>
+                <input type="password" value={this.state.password} onChange={this.handlePassword} placeholder='password'/><br/>
+                <button onClick={this.login} style={buttonStyle}>Login</button>
+              </div>
+              <div style={divstyle} >
+                <button style={buttonStyle}> <a href="#">Signup</a> </button> 
+              </div>
+            </form>
+          </div>
+        </React.Fragment>
+      );
+    }
   }
 }
 
-export default Login;
+const mapStateToProps = state => {
+  return {
+    uid: state.uid
+  };
+};
+
+export default connect(mapStateToProps)(Login);
