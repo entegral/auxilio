@@ -1,6 +1,6 @@
 import React from 'react';
 import OrgDeptDetail from './OrgDeptDetail';
-import { listStyleChild } from './helpers/jsStyleObjects';
+import { listStyleChild } from '../helpers/jsStyleObjects';
 
 function OrgDeptList() {
   return (

@@ -3,8 +3,8 @@ import { Switch, Route } from 'react-router-dom';
 // import { Provider } from 'react-redux';
 import Header from './Header';
 import Login from './Login';
-import Profile from './Profile';
-import Organization from './Organization'
+import Profile from './ProfilePage/Profile';
+import Organization from './OrganizationPage/Organization'
 
 function App() {
   return (

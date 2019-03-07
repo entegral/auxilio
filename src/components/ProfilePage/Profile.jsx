@@ -2,7 +2,7 @@ import React from 'react';
 import ProfileInfoDisplay from './ProfileInfoDisplay';
 import ProfileOrgDisplay from './ProfileOrgDisplay';
 import ProfileJobDisplay from './ProfileJobDisplay';
-import { listStyleParent } from './helpers/jsStyleObjects';
+import { listStyleParent } from '../helpers/jsStyleObjects';
 
 function Profile () {
 

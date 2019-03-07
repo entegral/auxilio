@@ -2,7 +2,7 @@ import React from 'react';
 import OrgUpdateList from './OrgUpdateList';
 import OrgLeadList from './OrgLeadList';
 import OrgDeptList from './OrgDeptList';
-import { listStyleParent } from './helpers/jsStyleObjects';
+import { listStyleParent } from '../helpers/jsStyleObjects';
 
 
 function Organization () {
