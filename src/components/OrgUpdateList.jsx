@@ -1,9 +1,13 @@
-import React from 'react'
+import React from 'react';
+import OrgUpdateDetail from './OrgUpdateDetail';
 import { listStyleChild } from './helpers/jsStyleObjects';
 
 function OrgUpdateList() {
   return (
-    <div style={listStyleChild}>Org Update Detail works.</div>
+    <div style={listStyleChild}>
+      <OrgUpdateDetail />
+      <OrgUpdateDetail />
+    </div>
   );
 }
 

@@ -6,8 +6,15 @@ import { listStyleParent } from './helpers/jsStyleObjects';
 
 
 function Organization () {
+
+  const orgHeaderStyle = {
+    display: 'flex',
+    justifyContent: 'center'
+  }
+
   return (
     <React.Fragment>
+      <h4 style = {orgHeaderStyle}>[OrganizationTitle] Communications Page</h4>  
       <div style={listStyleParent}>
         <OrgUpdateList/>
         <OrgLeadList />

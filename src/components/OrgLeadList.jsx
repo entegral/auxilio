@@ -1,9 +1,13 @@
-import React from 'react'
+import React from 'react';
+import OrgLeadDetail from './OrgLeadDetail';
 import { listStyleChild } from './helpers/jsStyleObjects';
 
 function OrgLeadList() {
   return (
-    <div style={listStyleChild}>Org Lead List works.</div>
+    <div style={listStyleChild}>
+      <OrgLeadDetail />
+      <OrgLeadDetail />
+    </div>
   );
 }
 
