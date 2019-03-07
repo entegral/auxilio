@@ -1,4 +1,7 @@
-import React from 'react'
+import React from 'react';
+import UserProfileDisplay from './UserProfileDisplay';
+import UserOrgDisplay from './UserOrgDisplay';
+import UserJobDisplay from './UserJobDisplay';
 
 function Profile () {
 
@@ -9,27 +12,20 @@ function Profile () {
 
   const divColumnStyle = {
     float: 'left',
-    border: '1px solid grey'
+    // border: '1px solid grey',
   }
 
   return (
     <div style={componentStyle}>
-      <div style={divColumnStyle}>
-        Profile picture area
-      </div>
+      <UserProfileDisplay style={divColumnStyle}/>
 
-      <div style={divColumnStyle}>
-        User information area
-      </div>
+      
+      <UserOrgDisplay style={divColumnStyle}/>
+      
 
-      <div style={divColumnStyle}>
-        <div>
-          User Organization area
-        </div>
-        <div>
-          User Job role area
-        </div>
-      </div>
+      
+      <UserJobDisplay style={divColumnStyle} />
+      
     </div>
   );
 }
