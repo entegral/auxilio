@@ -36,7 +36,6 @@ function Header () {
 
       <div>
         <a style={linkStyle} href='/#/'>Login</a>
-        <a style={linkStyle} href='/#/organizations'>My Orgs</a>
         <a style={linkStyle} href='/#/profile'>Home</a>
       </div>
     </div>
