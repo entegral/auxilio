@@ -1,14 +1,14 @@
 import React from 'react'
 import { listStyleChild } from './helpers/jsStyleObjects';
 
-function UserJobDisplay() {
+function ProfileJobPreview() {
 
   {/* TODO: Map through all jobs associated with the user in this section to act as an overview of all activity */ }
 
   return (
     <React.Fragment>
       <div style={listStyleChild}>
-        <h3>User's Job Titles</h3>
+        <h3>ProfileJobDisplay - User's Job Titles</h3>
         <ul>
           <li>Org Name
             <ul>
@@ -22,4 +22,4 @@ function UserJobDisplay() {
   );
 }
 
-export default UserJobDisplay;
+export default ProfileJobPreview;

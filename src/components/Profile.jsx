@@ -1,21 +1,28 @@
 import React from 'react';
-import UserProfileDisplay from './UserProfileDisplay';
-import UserOrgDisplay from './UserOrgDisplay';
-import UserJobDisplay from './UserJobDisplay';
+import ProfileInfoDisplay from './ProfileInfoDisplay';
+import ProfileOrgDisplay from './ProfileOrgDisplay';
+import ProfileJobDisplay from './ProfileJobDisplay';
 import { listStyleParent } from './helpers/jsStyleObjects';
 
 function Profile () {
 
+  const profileStyle = {
+    display: 'flex',
+    justifyContent: 'center'
+  }
 
   return (
-    <div style={listStyleParent}>
-      <UserProfileDisplay/>
+    <React.Fragment>
+      <h3 style={profileStyle}>[User] Profile</h3>  
+      <div style={listStyleParent}>
+        <ProfileInfoDisplay/>
 
-      <UserOrgDisplay/>
-      
-      <UserJobDisplay/>
-      
-    </div>
+        <ProfileOrgDisplay/>
+        
+        <ProfileJobDisplay/>
+        
+      </div>
+    </React.Fragment>
   );
 }
 

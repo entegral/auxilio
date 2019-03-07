@@ -1,14 +1,14 @@
 import React from 'react'
 import { listStyleChild } from './helpers/jsStyleObjects';
 
-function UserOrgDisplay () {
+function ProfileOrgDisplay () {
 
   {/* TODO: Map through all organizations associated with the user in this section to act as an overview of all activity */}
 
   return (
     <React.Fragment>
       <div style={listStyleChild}>
-        <h3>User-Organization's Title</h3>
+        <h3>ProfileOrgDisplay</h3>
         <div>
           Most recent organization update (card)
         </div>
@@ -17,4 +17,4 @@ function UserOrgDisplay () {
   );
 }
 
-export default UserOrgDisplay;
+export default ProfileOrgDisplay;

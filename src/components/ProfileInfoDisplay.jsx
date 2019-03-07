@@ -1,12 +1,12 @@
 import React from 'react'
 import { listStyleChild } from './helpers/jsStyleObjects';
 
-function UserProfileDisplay () {
+function ProfileInfoDisplay () {
 
   return (
     <React.Fragment>
       <div style={listStyleChild}>
-        <h3>User Data</h3>
+        <h3>ProfileInfoDisplay - User Data</h3>
         <p>First + Last Name</p>
         <p>email</p>
         <p>Last Year Attended</p>
@@ -16,4 +16,4 @@ function UserProfileDisplay () {
   );
 }
 
-export default UserProfileDisplay;
+export default ProfileInfoDisplay;
