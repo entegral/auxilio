@@ -6,36 +6,31 @@ import * as serviceWorker from './serviceWorker';
 import {  HashRouter} from 'react-router-dom'; 
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import authReducer from './reducers/auth-reducer';
+import rootReducer from './reducers/index';
 
-const initialState = {
-  userId: {
-    email: '',
-    password: '',
-    uid: ''
-  },
-  userObjModel: {
-    organizations: [],
-    departments: [],
-    jobs: []
-  }
-}
 
-const store = createStore(authReducer, initialState);
+const store = createStore(rootReducer);
+
+
 
 const render = (Component) => {
-    ReactDOM.render(
-        < HashRouter > 
+  ReactDOM.render(
+    < HashRouter > 
           <Provider store={store}>
             <Component />
           </Provider>
         </HashRouter>,
     document.getElementById('root')
-  );
-};
+    );
+  };
 
 render(App);
 
+let unsubscribe = store.subscribe(() =>{
+  console.log(store.getState());
+  render(App);
+  }
+);
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: http://bit.ly/CRA-PWA

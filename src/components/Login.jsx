@@ -63,7 +63,7 @@ class Login extends React.Component {
       marginTop: '30px'
     }
 
-    if (this.props.uid){
+    if (this.props.userData.uid){
       return <Redirect to='/profile' />
     } else {
       return (
@@ -89,7 +89,7 @@ class Login extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    uid: state.uid
+    userData: state.userId
   };
 };
 
