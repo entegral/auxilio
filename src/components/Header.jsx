@@ -41,20 +41,37 @@ class Header extends React.Component {
       textDecoration: 'none',
       color: 'black'
     }
-    
-    return (
-      <div style={bannerStyle}>
-        <div>
-          <h2 style={headerStyle} > <a style={headerAnchorStyle} href="/#/profile">Auxilio</a> </h2>
-        </div>
 
-        <div>
-          <a style={linkStyle} href='/#/'>Login</a>
-          <a href="/#/" onClick={this.signOut}>Logout</a>
-          <a style={linkStyle} href='/#/profile'>Home</a>
+    const nameStyle = {
+      float: 'left'
+    }
+
+    if (this.props.userData.uid){
+      return (
+        <div style={bannerStyle}>
+          <div>
+            <h2 style={headerStyle} > <a style={headerAnchorStyle} href="/#/">Auxilio</a> </h2>
+          </div>
+
+          <div>
+            <p style={linkStyle}>{this.props.userData.email}</p>
+            <a style={linkStyle} href="/#/" onClick={this.signOut}>Logout</a>
+          </div>
         </div>
-      </div>
-    );
+      );
+    } else {
+      return (
+        <div style={bannerStyle}>
+          <div>
+            <h2 style={headerStyle} > <a style={headerAnchorStyle} href="/#/">Auxilio</a> </h2>
+          </div>
+
+          <div>
+            <a style={linkStyle} href='/#/'>Login</a>
+          </div>
+        </div>
+      );
+    }
   }
 };
 
