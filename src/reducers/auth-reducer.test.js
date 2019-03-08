@@ -25,6 +25,7 @@ describe('authReducer', () => {
   test('Should add new user to firebase and assign their uid to redux state', () => {
     const actionPromise = signUpAction('test@gmail.com', 'password');
     actionPromise.then((action) => {
+      console.log(action);
       expect(authReducer({}, action)).toEqual({
         userId: {
           email: 'test@gmail.com',

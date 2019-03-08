@@ -1,5 +1,4 @@
 import React from 'react'
-import firebase from 'firebase';
 import { connect } from 'react-redux';
 import { logout } from '../actions/authActions';
 
@@ -40,10 +39,6 @@ class Header extends React.Component {
       margin: '0px 20px 0px 0px',
       textDecoration: 'none',
       color: 'black'
-    }
-
-    const nameStyle = {
-      float: 'left'
     }
 
     if (this.props.userData.uid){
