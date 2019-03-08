@@ -10,10 +10,13 @@ describe('authReducer', () => {
   });
 
   test('Should return data of specified test user', () => {
-    let userDataPromise = getUserDataAction('3');
-    expect(userDataPromise.then((userData)=>{
-      expect(userDataReducer({}, userData)).toEqual({});
-    })).toEqual({})
+    let userData; 
+    getUserDataAction('3').then((json)=>{
+      userData = json;
+      console.log(userData);
+      return expect(userDataReducer({}, userData)).toEqual({});
+    });
+    
   });
 
 });
