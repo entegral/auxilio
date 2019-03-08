@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { loginAction, signUpAction } from '../actions/authActions';
 import { saveUserDataAction } from '../actions/userDataActions';
+import { errorAction } from '../actions/errorActions';
 
 class Login extends React.Component {
 
@@ -19,43 +20,47 @@ class Login extends React.Component {
     this.handleConfirmPassword = this.handleConfirmPassword.bind(this);
     this.login = this.login.bind(this);
     this.createUser = this.createUser.bind(this);
-  }
+  };
 
   handleEmail(event) {
     this.setState({...this.state, email: event.target.value});
-  }
+  };
 
   handlePassword(event){
     this.setState({ ...this.state, password: event.target.value });
-  }
+  };
 
   handleConfirmPassword(event) {
     this.setState({ ...this.state, confirm_password: event.target.value });
-  }
+  };
 
   login (event) {
     event.preventDefault();
     loginAction(this.state.email, this.state.password).then((action)=>{
       this.props.dispatch(action);
     });
-  }
+  };
 
   createUser (event){
     event.preventDefault();
     if (this.state.password === this.state.confirm_password){
       signUpAction(this.state.email, this.state.password)
+      .catch((loginError)=>{
+        this.props.dispatch(errorAction(loginError.message));
+      })
       .then((action)=>{
         this.props.dispatch(action);
-      }).then(()=>{
+      })
+      .then(()=>{
         saveUserDataAction({ email: this.state.email, uid: this.props.userAuthData.uid }).then((action)=>{
           console.log(action);
           this.props.dispatch(action);
         })
       });
     } else {
-      this.setState({...this.state, error_message: 'the passwords you entered did not match.'});
-    }
-  }
+      this.props.dispatch(errorAction('the passwords you entered did not match.'));
+    };
+  };
 
   render() {
 
@@ -84,7 +89,7 @@ class Login extends React.Component {
     }
 
     let inputStyle;
-    if (!this.state.error_message){
+    if (!this.props.errors.message){
       inputStyle = {
         textAlign: 'center'
       }
@@ -105,6 +110,11 @@ class Login extends React.Component {
       fontSize: '0.5em'
     }
 
+    const errorStyle = {
+      color: 'red',
+      width: '100px'
+    }
+
     if (this.props.userAuthData.uid){
       return <Redirect to='/profile' />
     } else {
@@ -123,6 +133,7 @@ class Login extends React.Component {
                 <input style={inputStyle} type="password" value={this.state.confirm_password} onChange={this.handleConfirmPassword} placeholder='confirm password' /><br />
                 <button onClick={this.createUser} style={buttonStyle}>Signup</button> 
               </div>
+              <p style={errorStyle}>{this.props.errors.message}</p>
             </form>
           </div>
         </React.Fragment>
@@ -134,7 +145,8 @@ class Login extends React.Component {
 const mapStateToProps = state => {
   return {
     userAuthData: state.userAuthData,
-    userData: state.userData
+    userData: state.userData,
+    errors: state.errors
   };
 };
 

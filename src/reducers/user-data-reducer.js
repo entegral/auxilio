@@ -14,11 +14,6 @@ export default (state = {}, action) => {
         first_year_worked: first_year_worked
       }
       return newState;
-    // case 'ADD_USER_DATA':
-    //   newState = {
-    //     ...state,
-    //     userData: action.userData
-    //   }
     default:
       return state;
   }
