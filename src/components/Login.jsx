@@ -36,27 +36,33 @@ class Login extends React.Component {
 
   login (event) {
     event.preventDefault();
-    loginAction(this.state.email, this.state.password).then((action)=>{
-      this.props.dispatch(action);
-    });
+    loginAction(this.state.email, this.state.password)
+      .then((action)=>{
+        this.props.dispatch(action);
+      })
+      .catch((loginError) => {
+        console.log('error message', loginError.message);
+        this.props.dispatch(errorAction(loginError.message));
+      });
   };
 
   createUser (event){
     event.preventDefault();
     if (this.state.password === this.state.confirm_password){
       signUpAction(this.state.email, this.state.password)
-      .catch((loginError)=>{
-        this.props.dispatch(errorAction(loginError.message));
-      })
-      .then((action)=>{
-        this.props.dispatch(action);
-      })
-      .then(()=>{
-        saveUserDataAction({ email: this.state.email, uid: this.props.userAuthData.uid }).then((action)=>{
-          console.log(action);
+        .then((action)=>{
           this.props.dispatch(action);
         })
-      });
+        .then(()=>{
+          saveUserDataAction({ email: this.state.email, uid: this.props.userAuthData.uid }).then((action)=>{
+            console.log(action);
+            this.props.dispatch(action);
+          })
+        })
+        .catch((loginError) => {
+          console.log('error message', loginError.message);
+          this.props.dispatch(errorAction(loginError.message));
+        });
     } else {
       this.props.dispatch(errorAction('the passwords you entered did not match.'));
     };
@@ -67,7 +73,7 @@ class Login extends React.Component {
     const componentStyle = {
       display: 'flex',
       justifyContent: 'center',
-      marginTop: '10%'
+      marginTop: '10%',
     }
 
     const formStyle = {
@@ -112,7 +118,8 @@ class Login extends React.Component {
 
     const errorStyle = {
       color: 'red',
-      width: '100px'
+      width: '125px',
+      textAlign: 'center'
     }
 
     if (this.props.userAuthData.uid){
