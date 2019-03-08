@@ -1,4 +1,4 @@
-import {loginUser, signUp} from '../components/firebase';
+import {loginUser, signUp, signOut } from '../components/firebase';
 
 export function loginAction(email, password) {
   const loginCredential = loginUser(email, password);
@@ -22,4 +22,13 @@ export function signUpAction(email, password) {
       uid: content.user.uid
     });
   })
+}
+
+export function logout() {
+  signOut();
+  return {
+    type: 'LOGOUT',
+    email: '',
+    uid: ''
+  }
 }

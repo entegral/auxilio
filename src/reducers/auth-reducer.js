@@ -7,6 +7,9 @@ export default (state = {}, action ) => {
     case 'REGISTER_NEW_USER':
       newState = {...state, email: action.email, uid: action.uid}
       return newState;
+    case 'LOGOUT':
+      newState = {...state, email: '', uid: ''}
+      return newState;
     default:
       return state;
   }

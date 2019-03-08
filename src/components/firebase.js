@@ -20,3 +20,7 @@ export function signUp(email, password) {
   const userCredential = firebase.auth().createUserWithEmailAndPassword(email, password);
   return userCredential;
 }
+
+export function signOut(){
+  firebase.auth().signOut()
+}
