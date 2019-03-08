@@ -53,7 +53,20 @@ class Login extends React.Component {
     }
 
     const buttonStyle = {
-      width: '100%'
+      width: '100%',
+      color: 'lightgrey',
+      backgroundColor: 'transparent',
+      border: '1px solid lightgrey',
+      margin: '10px 0px 10px 0px'
+    }
+
+    const loginTitle = {
+      color: 'lightgrey',
+      textAlign: 'center'
+    }
+
+    const inputStyle = {
+      textAlign: 'center'
     }
 
     const divstyle = {
@@ -68,9 +81,9 @@ class Login extends React.Component {
           <div style={componentStyle}>
             <form style={formStyle}>
               <div>
-                <h3>Login</h3>
-                <input type="text" value = {this.state.email} onChange={this.handleEmail} placeholder='email'/><br/>
-                <input type="password" value={this.state.password} onChange={this.handlePassword} placeholder='password'/><br/>
+                <h3 style = {loginTitle}>Login</h3>
+                <input style={inputStyle} type="text" value = {this.state.email} onChange={this.handleEmail} placeholder='email'/><br/>
+                <input style={inputStyle} type="password" value={this.state.password} onChange={this.handlePassword} placeholder='password'/><br/>
                 <button onClick={this.login} style={buttonStyle}>Login</button>
               </div>
               <div style={divstyle} >
