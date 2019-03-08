@@ -9,10 +9,13 @@ class Login extends React.Component {
     super(props);
     this.state = {
       email: '',
-      password: ''
+      password: '',
+      confirm_password: '',
+      error_message: ''
     };
     this.handleEmail = this.handleEmail.bind(this);
     this.handlePassword = this.handlePassword.bind(this);
+    this.handleConfirmPassword = this.handleConfirmPassword.bind(this);
     this.login = this.login.bind(this);
     this.createUser = this.createUser.bind(this);
   }
@@ -25,6 +28,10 @@ class Login extends React.Component {
     this.setState({ ...this.state, password: event.target.value });
   }
 
+  handleConfirmPassword(event) {
+    this.setState({ ...this.state, confirm_password: event.target.value });
+  }
+
   login (event) {
     event.preventDefault();
     loginAction(this.state.email, this.state.password).then((action)=>{
@@ -34,9 +41,13 @@ class Login extends React.Component {
 
   createUser (event){
     event.preventDefault();
-    signUpAction(this.state.email, this.state.password).then((action)=>{
-      this.props.dispatch(action);
-    });
+    if (this.state.password === this.state.confirm_password){
+      signUpAction(this.state.email, this.state.password).then((action)=>{
+        this.props.dispatch(action);
+      });
+    } else {
+      this.setState({...this.state, error_message: 'the passwords you entered did not match.'});
+    }
   }
 
   render() {
@@ -65,12 +76,26 @@ class Login extends React.Component {
       textAlign: 'center'
     }
 
-    const inputStyle = {
-      textAlign: 'center'
+    let inputStyle;
+    if (!this.state.error_message){
+      inputStyle = {
+        textAlign: 'center'
+      }
+    } else {
+      inputStyle = {
+        textAlign: 'center',
+        border: '1px solid red',
+      }
     }
 
     const divstyle = {
-      marginTop: '30px'
+      marginTop: '20px'
+    }
+
+    const pStyle = {
+      textAlign: 'center',
+      color: 'lightgrey',
+      fontSize: '0.5em'
     }
 
     if (this.props.userData.uid){
@@ -86,7 +111,9 @@ class Login extends React.Component {
                 <input style={inputStyle} type="password" value={this.state.password} onChange={this.handlePassword} placeholder='password'/><br/>
                 <button onClick={this.login} style={buttonStyle}>Login</button>
               </div>
+              <p style={pStyle}>OR</p>
               <div style={divstyle} >
+                <input style={inputStyle} type="password" value={this.state.confirm_password} onChange={this.handleConfirmPassword} placeholder='confirm password' /><br />
                 <button onClick={this.createUser} style={buttonStyle}>Signup</button> 
               </div>
             </form>
