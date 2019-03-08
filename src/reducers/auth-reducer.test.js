@@ -14,7 +14,7 @@ describe('authReducer', () => {
     actionPromise.then((action) => {
       console.log('action', action);
       expect(authReducer({}, action)).toEqual({
-        userId: {
+        userAuthData: {
           email: 'e2robby@gmail.com',
           uid: '5dYxOi33FlU8lp9ADd5Sq3xxSGl2'
         }
@@ -27,7 +27,7 @@ describe('authReducer', () => {
     actionPromise.then((action) => {
       console.log(action);
       expect(authReducer({}, action)).toEqual({
-        userId: {
+        userAuthData: {
           email: 'test@gmail.com',
           uid: expect.any(String)
         }

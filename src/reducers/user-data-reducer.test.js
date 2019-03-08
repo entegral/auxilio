@@ -15,7 +15,7 @@ describe('authReducer', () => {
       userData = json;
       console.log(userData);
       return expect(userDataReducer({}, userData)).toEqual({});
-    });
+    })
     
   });
 

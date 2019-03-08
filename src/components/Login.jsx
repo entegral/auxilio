@@ -2,6 +2,7 @@ import React from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { loginAction, signUpAction } from '../actions/authActions';
+import { saveUserDataAction } from '../actions/userDataActions';
 
 class Login extends React.Component {
 
@@ -42,8 +43,14 @@ class Login extends React.Component {
   createUser (event){
     event.preventDefault();
     if (this.state.password === this.state.confirm_password){
-      signUpAction(this.state.email, this.state.password).then((action)=>{
+      signUpAction(this.state.email, this.state.password)
+      .then((action)=>{
         this.props.dispatch(action);
+      }).then(()=>{
+        saveUserDataAction({ email: this.state.email, uid: this.props.userAuthData.uid }).then((action)=>{
+          console.log(action);
+          this.props.dispatch(action);
+        })
       });
     } else {
       this.setState({...this.state, error_message: 'the passwords you entered did not match.'});
@@ -98,7 +105,7 @@ class Login extends React.Component {
       fontSize: '0.5em'
     }
 
-    if (this.props.userData.uid){
+    if (this.props.userAuthData.uid){
       return <Redirect to='/profile' />
     } else {
       return (
@@ -126,7 +133,8 @@ class Login extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    userData: state.userId
+    userAuthData: state.userAuthData,
+    userData: state.userData
   };
 };
 

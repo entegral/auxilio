@@ -11,6 +11,7 @@ class Profile extends React.Component {
   constructor(props){
     super(props);
     this.state = {};
+    
   }
 
   render() {
@@ -20,7 +21,7 @@ class Profile extends React.Component {
       justifyContent: 'center'
     }
 
-    const { uid } = this.props.userData;
+    const { uid } = this.props.userAuthData;
     
     if (uid) {
       return (
@@ -48,7 +49,8 @@ class Profile extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    userData: state.userId
+    userAuthData: state.userAuthData,
+    userData: state.userData
   }
 }
 

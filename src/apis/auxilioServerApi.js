@@ -9,3 +9,11 @@ export function getUserData(uid = '') {
     return jsonResponse;
   });
 };
+
+export function saveUserData(email, uid){
+  return fetch(`http://localhost:3001/users?email=${email}&uid=${uid}`, {
+    method: 'POST'
+  }).then((response)=>{
+    return response.json();
+  });
+};
