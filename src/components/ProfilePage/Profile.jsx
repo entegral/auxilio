@@ -1,29 +1,55 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import ProfileInfoDisplay from './ProfileInfoDisplay';
 import ProfileOrgDisplay from './ProfileOrgDisplay';
 import ProfileJobDisplay from './ProfileJobDisplay';
 import { listStyleParent } from '../helpers/jsStyleObjects';
 
-function Profile () {
+class Profile extends React.Component {
 
-  const profileStyle = {
-    display: 'flex',
-    justifyContent: 'center'
+  constructor(props){
+    super(props);
+    this.state = {};
   }
 
-  return (
-    <React.Fragment>
-      <h3 style={profileStyle}>[User] Profile</h3>  
-      <div style={listStyleParent}>
-        <ProfileInfoDisplay/>
+  render() {
 
-        <ProfileOrgDisplay/>
-        
-        <ProfileJobDisplay/>
-        
-      </div>
-    </React.Fragment>
-  );
+    const profileStyle = {
+      display: 'flex',
+      justifyContent: 'center'
+    }
+
+    const { uid } = this.props.userData;
+    
+    if (uid) {
+      return (
+        <React.Fragment>
+          <h3 style={profileStyle}>Profile</h3>  
+          <div style={listStyleParent}>
+            <ProfileInfoDisplay/>
+  
+            <ProfileOrgDisplay/>
+            
+            <ProfileJobDisplay/>
+            
+          </div>
+        </React.Fragment>
+      );
+    } else {
+      return(
+        <Redirect to='/#/' />
+      )
+    }
+
+  }
+
 }
 
-export default Profile;
+const mapStateToProps = state => {
+  return {
+    userData: state.userId
+  }
+}
+
+export default connect (mapStateToProps)(Profile);
