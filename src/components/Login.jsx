@@ -41,7 +41,6 @@ class Login extends React.Component {
         this.props.dispatch(action);
       })
       .catch((loginError) => {
-        console.log('error message', loginError.message);
         this.props.dispatch(errorAction(loginError.message));
       });
   };
