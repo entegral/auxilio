@@ -1,8 +1,8 @@
-## Auxilio
+# Auxilio
 
 #### by Robert Bruce
 
-### Project Proposal
+## Project Proposal
 
 Auxilio is here to help you manage your workforce. It provides you with a platform to effectively manage and coordinate your constituents. Auxilio accomplishes this through the use of: 
   * Organization of consitituents into **_departments_**
@@ -18,7 +18,24 @@ Auxilio is here to help you manage your workforce. It provides you with a platfo
       * Registered for an open-signup process
       * Special appointment
 
-### List the absolute minimum features the project requires to meet this purpose or goal:
+## Planned State
+
+### Login - Stateful Presentational Component
+This component will need to be stateful due to the nature of the login process I have chosen. The component will store a user's email and password (and password confirmation if the user is new) and will have to make an initial API call to firebase to receive their fb-issued UID. This UID will then be used to make a second API call to a Ruby on Rails server, used to host the complex relational data used internally.
+
+### Profile - Stateful Container Component
+This component will also need to be stateful so it can pass down the relevant user-information displayed within its presentational child-components. 
+
+### Organization - Stateful Container Component
+This component will need to be stateful because it will request information from the RoR server that is relevant to the organization it represents (i.e. updates, Managers, Departments, etc.). It will likely have both presentational and container child-components.
+
+### Header - Stateful Presentational Component
+This component will be stateful so it can properly detect/display relevant links based upon the user's logged-in status and permission access-level.
+
+### App - Stateless Container Component
+This component could be used statefully, however, most of its child components have different concerns and can be hooked directly to their relevant state-slices.
+
+## List the absolute minimum features the project requires to meet this purpose or goal:
 
 * A new user can create a new Organization/Camp/Group or join an existing Org/Camp/Group
   * Upon creation, user becomes "Manager" of the Org/Camp/Group
@@ -64,7 +81,7 @@ Only Manager and those in the Admins department can add posts to the Organizatio
 
 ### Proposed Project View Layout
 
-![project_layout](./src/assets/images/auxilio_visual_layout.jpg "proposed project page layout")
+![project_layout](./src/assets/images/auxilio_component_views.jpg "proposed project page layout")
 
 ### Proposed Project Component Tree
 
