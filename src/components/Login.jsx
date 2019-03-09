@@ -2,7 +2,7 @@ import React from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { loginAction, signUpAction } from '../actions/authActions';
-import { saveUserDataAction } from '../actions/userDataActions';
+import { saveUserDataAction, getUserDataAction } from '../actions/userDataActions';
 import { errorAction } from '../actions/errorActions';
 
 class Login extends React.Component {
@@ -39,6 +39,10 @@ class Login extends React.Component {
     loginAction(this.state.email, this.state.password)
       .then((action)=>{
         this.props.dispatch(action);
+      }).then(()=>{
+        getUserDataAction(this.props.userAuthData.uid).then((action)=>{
+          this.props.dispatch(action);
+        });
       })
       .catch((loginError) => {
         this.props.dispatch(errorAction(loginError.message));

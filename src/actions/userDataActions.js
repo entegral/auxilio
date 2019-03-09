@@ -3,10 +3,11 @@ import { saveUserData } from '../apis/auxilioServerApi';
 
 export function getUserDataAction(uid){
   const userDataPromise = getUserData(uid);
-  return userDataPromise.then((jsonResponse)=>{
+  return userDataPromise.then((userData)=>{
+    console.log('action getuserdata response', userData);
     return {
       type: 'GET_USER_DATA',
-      userData: jsonResponse
+      userData: userData
     };
   });
 };
