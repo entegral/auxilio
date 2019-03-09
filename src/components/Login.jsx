@@ -80,8 +80,9 @@ class Login extends React.Component {
     }
 
     const formStyle = {
-      backgroundColor: '#838383',
-      padding: '0px 30px 30px 30px'
+      backgroundColor: '#505050',
+      padding: '0px 30px 30px 30px',
+      borderRadius: '3px'
     }
 
     const buttonStyle = {
@@ -107,7 +108,7 @@ class Login extends React.Component {
         textAlign: 'center',
         border: '1px solid red',
       }
-    }
+    };
 
     const divstyle = {
       marginTop: '20px'
@@ -121,7 +122,7 @@ class Login extends React.Component {
 
     const errorStyle = {
       color: 'red',
-      width: '125px',
+      width: '175px',
       textAlign: 'center'
     }
 

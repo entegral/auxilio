@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import { logout } from '../actions/authActions';
+import { Button } from 'react-materialize';
 
 class Header extends React.Component {
   
@@ -19,7 +20,7 @@ class Header extends React.Component {
       display: 'flex',
       justifyContent: 'space-between',
       alignItems: 'center',
-      backgroundColor: 'darkgrey',
+      backgroundColor: '#505050',
       marginBottom: '25px'
     }
     
@@ -30,28 +31,30 @@ class Header extends React.Component {
 
     const headerAnchorStyle = {
       textDecoration: 'none',
-      color: 'black'
+      color: 'lightgrey'
 
     }
 
     const linkStyle = {
       float: 'left',
       margin: '0px 20px 0px 0px',
-      textDecoration: 'none',
-      color: 'black'
+      border: '1px solid #888',
+      color: 'lightgrey'
+
+    }
+
+    const loginStatus = {
+      alignItems: 'center'
     }
 
     if (this.props.userData.uid){
       return (
         <div style={bannerStyle}>
-          <div>
             <h2 style={headerStyle} > <a style={headerAnchorStyle} href="/#/">Auxilio</a> </h2>
-          </div>
 
-          <div>
-            <p style={linkStyle}>{this.props.userData.email}</p>
-            <a style={linkStyle} href="/#/" onClick={this.signOut}>Logout</a>
-          </div>
+            <h5 style={linkStyle}>{this.props.userData.email}</h5>
+            <Button style={linkStyle} className='btn-flat transparent grey-text text-lighten-1' waves='light' onClick={this.signOut} href='/#/'> Logout </Button>
+
         </div>
       );
     } else {
@@ -62,7 +65,7 @@ class Header extends React.Component {
           </div>
 
           <div>
-            <a style={linkStyle} href='/#/'>Login</a>
+            <Button style={linkStyle} className='btn-flat transparent grey-text text-lighten-1' waves='light' node='a' href='/#/'> Login </Button>
           </div>
         </div>
       );

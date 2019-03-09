@@ -18,7 +18,8 @@ class Profile extends React.Component {
 
     const profileStyle = {
       display: 'flex',
-      justifyContent: 'center'
+      justifyContent: 'center',
+      color: 'lightgrey'
     }
 
     const { uid } = this.props.userAuthData;

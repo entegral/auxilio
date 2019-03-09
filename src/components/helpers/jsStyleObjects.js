@@ -1,11 +1,14 @@
 export const listStyleParent = {
     display: 'flex',
     justifyContent: 'space-around',
-    flexWrap: 'wrap'
+    flexWrap: 'wrap',
+    color: 'lightgrey'
 }
 
 export const listStyleChild = {
-    backgroundColor: '#838383',
-    padding: '0px 10px 10px 10px',
-    margin: '20px'
+    backgroundColor: '#505050',
+    borderRadius: '3px',
+    padding: '20px 40px 40px 40px',
+    margin: '20px',
+    color: 'lightgrey'
   }
