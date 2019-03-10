@@ -8,7 +8,7 @@ function ProfileJobPreview() {
   return (
     <React.Fragment>
       <div style={listStyleChild}>
-        <h3>ProfileJobDisplay - User's Job Titles</h3>
+        <h5>ProfileJobDisplay - User's Job Titles</h5>
         <ul>
           <li>Org Name
             <ul>

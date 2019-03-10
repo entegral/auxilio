@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import { logout } from '../actions/authActions';
-import { Icon, Button, SideNav, SideNavItem } from 'react-materialize';
+import { Icon, Button, SideNav, SideNavItem, NavItem, Navbar } from 'react-materialize';
 import {Link } from 'react-router-dom';
 class Header extends React.Component {
   
@@ -15,13 +15,15 @@ class Header extends React.Component {
   }
 
   render(){
-    
-    const bannerStyle = {
+
+    const bannerStyleLoggedOut = {
       display: 'flex',
-      justifyContent: 'space-between',
+      justifyContent: 'Center',
       alignItems: 'center',
       backgroundColor: '#505050',
+      width: '100%'
     }
+
     
     const headerStyle = {
       margin: '5px 5px 5px 20px',
@@ -31,47 +33,27 @@ class Header extends React.Component {
     const headerAnchorStyle = {
       textDecoration: 'none',
       color: 'lightgrey'
-
     }
 
-    const linkStyle = {
-      float: 'left',
-      margin: '0px 20px 0px 0px',
-      border: '1px solid #888',
-      color: 'lightgrey'
-
+    const navBarStyle = {
+      paddingLeft: '20px'
     }
 
     if (this.props.userData.uid){
       return (
-        <div style={bannerStyle}>
-            <h2 style={headerStyle} > <a style={headerAnchorStyle} href="/">Auxilio</a> </h2>
-
-
-            <div>
-              <SideNav 
-                trigger={<Button style = {linkStyle} className='btn-flat transparent'><Icon>menu</Icon></Button>}
-                options={{ closeOnClick: true }} >
-                <SideNavItem icon='account_box' href='#!' ><Link to='/profile'> {this.props.userAuthData.email}</Link> </SideNavItem>
-                <SideNavItem divider />
-                <SideNavItem href='#!'> <Link to='/organizations'> Organizations</Link></SideNavItem>
-                <SideNavItem waves href='#!'><Link to='/departments'>Departments</Link></SideNavItem>
-                <SideNavItem waves href='#!'><Link to='/jobs'>Jobs</Link></SideNavItem>
-              </SideNav>
-              <Button style={linkStyle} className='btn-flat transparent grey-text text-lighten-1' waves='light' onClick={this.signOut} href='/#/'> Logout </Button>
-            </div>
-
-        </div>
+        <Navbar style={navBarStyle} brand='Auxilio' href='#' right className='grey darken-2'>
+          <NavItem icon='account_box' href='#!' ><Link to='/profile'> {this.props.userAuthData.email}</Link> </NavItem>
+          <NavItem divider />
+          <NavItem href='#!'> <Link to='/organizations'> Organizations</Link></NavItem>
+          <NavItem waves href='#!'><Link to='/departments'>Departments</Link></NavItem>
+          <NavItem waves href='#!'><Link to='/jobs'>Jobs</Link></NavItem>
+        </Navbar>
       );
     } else {
       return (
-        <div style={bannerStyle}>
+        <div style={bannerStyleLoggedOut}>
           <div>
-            <h2 style={headerStyle} > <a style={headerAnchorStyle} href="/#/">Auxilio</a> </h2>
-          </div>
-
-          <div>
-            <Button style={linkStyle} className='btn-flat transparent grey-text text-lighten-1' waves='light' node='a' href='/#/'> Login </Button>
+            <h2 style={headerStyle} > <a style={headerAnchorStyle} href="/">Auxilio</a> </h2>
           </div>
         </div>
       );

@@ -8,7 +8,7 @@ function ProfileOrgDisplay () {
   return (
     <React.Fragment>
       <div style={listStyleChild}>
-        <h3>ProfileOrgDisplay</h3>
+        <h5>ProfileOrgDisplay</h5>
         <div>
           Most recent organization update (card)
         </div>

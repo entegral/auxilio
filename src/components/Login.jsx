@@ -81,7 +81,7 @@ class Login extends React.Component {
 
     const formStyle = {
       backgroundColor: '#505050',
-      padding: '0px 30px 30px 30px',
+      padding: '30px 30px 30px 30px',
       borderRadius: '3px'
     }
 
@@ -91,11 +91,6 @@ class Login extends React.Component {
       backgroundColor: 'transparent',
       border: '1px solid lightgrey',
       margin: '10px 0px 10px 0px'
-    }
-
-    const loginTitle = {
-      color: 'lightgrey',
-      textAlign: 'center'
     }
 
     let inputStyle;
@@ -114,16 +109,35 @@ class Login extends React.Component {
       marginTop: '20px'
     }
 
+    const hrStyle = {
+      borderTop: '1px solid #9e9e9e',
+      borderBottom: 'none',
+      width: '200px',
+      marginTop: '30px'
+    }
+
+    const hrStyle2 = {
+      borderTop: '1px solid #9e9e9e',
+      borderBottom: 'none',
+      width: '185px',
+    }
+
+    const hrStyle3 = {
+      borderTop: '1px solid #9e9e9e',
+      borderBottom: 'none',
+      width: '200px',
+    }
+
     const pStyle = {
       textAlign: 'center',
       color: 'lightgrey',
-      fontSize: '0.5em'
+      marginTop: '30px'
     }
 
     const errorStyle = {
       color: 'red',
       width: '175px',
-      textAlign: 'center'
+      textAlign: 'center',
     }
 
     if (this.props.userAuthData.uid){
@@ -134,14 +148,14 @@ class Login extends React.Component {
           <div style={componentStyle}>
             <form style={formStyle}>
               <div>
-                <h3 style = {loginTitle}>Login</h3>
                 <input style={inputStyle} type="text" value = {this.state.email} onChange={this.handleEmail} placeholder='email'/><br/>
                 <input style={inputStyle} type="password" value={this.state.password} onChange={this.handlePassword} placeholder='password'/><br/>
                 <button onClick={this.login} style={buttonStyle}>Login</button>
               </div>
-              <p style={pStyle}>OR</p>
+
+              <p style={pStyle}>or</p>
               <div style={divstyle} >
-                <input style={inputStyle} type="password" value={this.state.confirm_password} onChange={this.handleConfirmPassword} placeholder='confirm password' /><br />
+                <input style={inputStyle} type="password" value={this.state.confirm_password} onChange={this.handleConfirmPassword} placeholder='confirm password to' /><br />
                 <button onClick={this.createUser} style={buttonStyle}>Signup</button> 
               </div>
               <p style={errorStyle}>{this.props.errors.message}</p>
