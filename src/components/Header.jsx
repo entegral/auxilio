@@ -1,8 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import { logout } from '../actions/authActions';
-import { Icon, Button, SideNav, SideNavItem, Dropdown, NavItem } from 'react-materialize';
-
+import { Icon, Button, SideNav, SideNavItem } from 'react-materialize';
+import {Link } from 'react-router-dom';
 class Header extends React.Component {
   
   constructor(props){
@@ -45,18 +45,18 @@ class Header extends React.Component {
     if (this.props.userData.uid){
       return (
         <div style={bannerStyle}>
-            <h2 style={headerStyle} > <a style={headerAnchorStyle} href="/#/">Auxilio</a> </h2>
+            <h2 style={headerStyle} > <a style={headerAnchorStyle} href="/">Auxilio</a> </h2>
 
 
             <div>
               <SideNav 
                 trigger={<Button style = {linkStyle} className='btn-flat transparent'><Icon>menu</Icon></Button>}
                 options={{ closeOnClick: true }} >
-                <SideNavItem icon='account_box' href='/#/profile' > {this.props.userAuthData.email} </SideNavItem>
+                <SideNavItem icon='account_box' href='#!' ><Link to='/profile'> {this.props.userAuthData.email}</Link> </SideNavItem>
                 <SideNavItem divider />
-                <SideNavItem href='/#/organizations'>Organizations</SideNavItem>
-                <SideNavItem waves href='/#/departments'>Departments</SideNavItem>
-                <SideNavItem waves href='/#/jobs'>Jobs</SideNavItem>
+                <SideNavItem href='#!'> <Link to='/organizations'> Organizations</Link></SideNavItem>
+                <SideNavItem waves href='#!'><Link to='/departments'>Departments</Link></SideNavItem>
+                <SideNavItem waves href='#!'><Link to='/jobs'>Jobs</Link></SideNavItem>
               </SideNav>
               <Button style={linkStyle} className='btn-flat transparent grey-text text-lighten-1' waves='light' onClick={this.signOut} href='/#/'> Logout </Button>
             </div>

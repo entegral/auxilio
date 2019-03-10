@@ -60,7 +60,7 @@ class ProfileInfoDisplay extends React.Component {
         let updateReduxPromise = getUserDataAction(this.props.userData.uid)
         updateReduxPromise.then((action)=>{
           this.props.dispatch(action)
-          return (<Redirect to='/#/profile' />)
+          return (<Redirect to='/profile' />)
         })
       })
       .catch((error)=>{
