@@ -3,7 +3,7 @@ import OrgUpdateList from './OrgUpdateList';
 import OrgLeadList from './OrgLeadList';
 import OrgDeptList from './OrgDeptList';
 import { listStyleParent } from '../helpers/jsStyleObjects';
-
+import { Col, Row} from 'react-materialize';
 
 function Organization () {
 
@@ -15,11 +15,19 @@ function Organization () {
   return (
     <React.Fragment>
       <h1 style = {orgHeaderStyle}>[OrganizationTitle] Communications Page</h1>  
-      <div style={listStyleParent}>
-        <OrgUpdateList/>
-        <OrgLeadList />
-        <OrgDeptList />
-      </div>
+      <Row>
+
+        <Col s={12} m={8} l={8} >
+          <OrgUpdateList />
+        </Col>
+        <Col s={12} m={4} l={4}>
+          <OrgLeadList />
+        </Col>
+        <Col s={12} m={8} l={8}>
+          <OrgDeptList />
+        </Col>
+      
+      </Row>
     </React.Fragment>
   );
 };

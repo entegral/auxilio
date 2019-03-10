@@ -44,7 +44,6 @@ class Header extends React.Component {
 
       return (
         <Navbar style={navBarStyle} brand='Auxilio' href='#' right className='grey darken-2'>
-          <NavItem href='#'>{this.props.userAuthData.email}</NavItem>
           <NavItem icon='account_box' href='#/profile' > My Profile </NavItem>
           <NavItem divider />
           <NavItem href='#/organizations'>  Organizations</NavItem>

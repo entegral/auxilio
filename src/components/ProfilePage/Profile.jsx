@@ -4,7 +4,8 @@ import { Redirect } from 'react-router-dom';
 import ProfileInfoDisplay from './ProfileInfoDisplay';
 import ProfileOrgDisplay from './ProfileOrgDisplay';
 import ProfileJobDisplay from './ProfileJobDisplay';
-import { listStyleParent } from '../helpers/jsStyleObjects';
+import { headerDiv } from '../helpers/jsStyleObjects';
+import {Col, Row} from 'react-materialize';
 
 class Profile extends React.Component {
 
@@ -17,18 +18,30 @@ class Profile extends React.Component {
   render() {
 
     const { uid } = this.props.userData; 
-    console.log('userID', uid)
+    
+    const headerStyle ={
+      color: 'lightgrey',
+      margin: '4px 4px 4px 20px'
+
+    }
+    
     if (uid) {
       return (
         <React.Fragment>
-          <div style={listStyleParent}>
-            <ProfileInfoDisplay/>
-  
-            <ProfileOrgDisplay/>
-            
-            <ProfileJobDisplay/>
-            
+          <div style={headerDiv}>
+            <h6 style={headerStyle}>My Profile</h6>
           </div>
+          <Row>
+            <Col s={12} m={8} l={8} >
+              <ProfileInfoDisplay/>
+            </Col>
+            <Col s={12} m={4} l={4} >
+              <ProfileOrgDisplay/>
+            </Col>  
+            <Col s={12} m={8} l={8} >
+              <ProfileJobDisplay/>
+            </Col>
+          </Row>
         </React.Fragment>
       );
     } else {

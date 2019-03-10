@@ -8,7 +8,15 @@ export const listStyleParent = {
 export const listStyleChild = {
     backgroundColor: '#505050',
     borderRadius: '3px',
-    padding: '20px 40px 40px 40px',
-    margin: '20px',
+    padding: '20px 30px 30px 30px',
+    margin: '5px',
     color: 'lightgrey'
   }
+
+export const headerDiv = {
+  backgroundColor: '#505050',
+  width: '100%',
+  padding: '4px 0px 4px 0px',
+  textAlign: 'left',
+  marginBottom: '20px'
+}

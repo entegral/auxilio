@@ -81,15 +81,21 @@ class ProfileInfoDisplay extends React.Component {
 
     const {email, first_name, last_name, last_year_enrolled} = this.props.userData;
 
+    const sectionStyle = {
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center'
+    }
 
     return (
       <React.Fragment>  
         <div style={listStyleChild}>
-          <h5 style={headerStyle}>Personal Information</h5>
+          <div style={sectionStyle}>
+            <h5 style={headerStyle}>Personal Information</h5>
             <Modal
               header='Edit User Info'
               fixedFooter
-              trigger={<Button style={buttonStyle} className='small transparent lightgrey-text' icon='edit'></Button>}>
+              trigger={<Button style={buttonStyle} className='btn-small transparent lightgrey-text'><Icon className='small'>edit</Icon></Button>}>
               <form>
                 <input type="text" value = {this.state._first_name} onChange={this.handleFirstName} placeholder='First Name'/>
                 <input type="text" value = {this.state._last_name} onChange={this.handleLastName} placeholder='Last Name'/>
@@ -98,6 +104,7 @@ class ProfileInfoDisplay extends React.Component {
                 </button>
               </form>
             </Modal>
+          </div>
           
           <p>{email}</p>
           <p>{first_name + ' ' + last_name}</p>

@@ -3,6 +3,7 @@ import OrgLeadDetail from './OrgLeadDetail';
 import { listStyleChild } from '../helpers/jsStyleObjects';
 
 function OrgLeadList() {
+  
   return (
     <div style={listStyleChild}>
       <OrgLeadDetail />
