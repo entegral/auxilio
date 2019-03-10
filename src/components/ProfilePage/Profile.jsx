@@ -19,15 +19,17 @@ class Profile extends React.Component {
     const profileStyle = {
       display: 'flex',
       justifyContent: 'center',
-      color: 'lightgrey'
+      color: 'lightgrey',
+      backgroundColor: '#505050',
+      marginTop: '0px',
     }
+
 
     const { uid } = this.props.userAuthData;
     
     if (uid) {
       return (
         <React.Fragment>
-          <h3 style={profileStyle}>Profile</h3>  
           <div style={listStyleParent}>
             <ProfileInfoDisplay/>
   

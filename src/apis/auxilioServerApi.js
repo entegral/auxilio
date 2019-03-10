@@ -10,9 +10,17 @@ export function getUserData(uid = '') {
   });
 };
 
-export function saveUserData(email, uid){
-  return fetch(`http://localhost:3000/users?email=${email}&uid=${uid}`, {
+export function saveUserData(email, uid, first_name='', last_name=''){
+  return fetch(`http://localhost:3000/users?email=${email}&uid=${uid}&first_name=${first_name}&last_name=${last_name}`, {
     method: 'POST'
+  }).then((response)=>{
+    return response.json();
+  });
+};
+
+export function updateUserData(uid, first_name='', last_name=''){
+  return fetch(`http://localhost:3000/users/1?uid=${uid}&first_name=${first_name}&last_name=${last_name}`, {
+    method: 'PATCH'
   }).then((response)=>{
     return response.json();
   });

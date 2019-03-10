@@ -23,15 +23,15 @@ class Login extends React.Component {
   };
 
   handleEmail(event) {
-    this.setState({...this.state, email: event.target.value});
+    this.setState({email: event.target.value});
   };
 
   handlePassword(event){
-    this.setState({ ...this.state, password: event.target.value });
+    this.setState({ password: event.target.value });
   };
 
   handleConfirmPassword(event) {
-    this.setState({ ...this.state, confirm_password: event.target.value });
+    this.setState({ confirm_password: event.target.value });
   };
 
   login (event) {
