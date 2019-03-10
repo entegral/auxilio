@@ -52,7 +52,7 @@ class ProfileInfoDisplay extends React.Component {
   }
 
   handleUpdateUser(){
-    const updateUserApiPromise = updateUserData(this.props.userData.uid, this.state._first_name, this.state._last_name);
+    const updateUserApiPromise = updateUserData(this.props.userData.id, this.props.userData.uid, this.state._first_name, this.state._last_name);
     updateUserApiPromise
       .then((json)=>{
         console.log(json);
@@ -105,10 +105,11 @@ class ProfileInfoDisplay extends React.Component {
             </Modal>
           </div>
           
-          <p>{email}</p>
-          <p>{first_name + ' ' + last_name}</p>
-          <p>Last Year Enrolled: {last_year_enrolled} </p>
-          <p>First Year Attended</p>
+          <label htmlFor='email'>Email</label>
+          <p name='email'>{email}</p>
+          <label htmlFor='name'>Name</label>
+          <p name='name'>{first_name + ' ' + last_name}</p>
+          
         </div>
       </React.Fragment>
     );

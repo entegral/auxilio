@@ -18,8 +18,8 @@ export function saveUserData(email, uid, first_name='', last_name=''){
   });
 };
 
-export function updateUserData(uid, first_name='', last_name=''){
-  return fetch(`https://desolate-plains-77764.herokuapp.com/users/1?uid=${uid}&first_name=${first_name}&last_name=${last_name}`, {
+export function updateUserData(id, uid, first_name='', last_name=''){
+  return fetch(`https://desolate-plains-77764.herokuapp.com/users/${id}?uid=${uid}&first_name=${first_name}&last_name=${last_name}`, {
     method: 'PATCH'
   }).then((response)=>{
     return response.json();
