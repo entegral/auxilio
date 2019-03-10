@@ -91,8 +91,8 @@ class ProfileInfoDisplay extends React.Component {
               fixedFooter
               trigger={<Button style={buttonStyle} className='small transparent lightgrey-text' icon='edit'></Button>}>
               <form>
-                <input type="text" value = {this.state._first_name} onChange={this.handleFirstName} placeholder={first_name}/>
-                <input type="text" value = {this.state._last_name} onChange={this.handleLastName} placeholder={last_name}/>
+                <input type="text" value = {this.state._first_name} onChange={this.handleFirstName} placeholder='First Name'/>
+                <input type="text" value = {this.state._last_name} onChange={this.handleLastName} placeholder='Last Name'/>
                 <button onClick={this.handleUpdateUser} style={buttonStyle} className="btn waves-effect waves-light grey btn-flat" type="submit" name="action">Save
                   <Icon className="material-icons right">save</Icon>
                 </button>

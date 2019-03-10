@@ -24,11 +24,11 @@ export function signUpAction(email, password) {
   })
 }
 
-export function logout() {
+export function clearAuthData() {
   signOut();
   return {
     type: 'LOGOUT',
-    email: '',
-    uid: ''
+    email: null,
+    uid: null
   }
 }

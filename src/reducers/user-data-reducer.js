@@ -15,6 +15,8 @@ export default (state = {}, action) => {
         first_year_worked: first_year_worked
       }
       return newState;
+    case 'CLEAR_USER_DATA':
+      return {}
     default:
       return state;
   }

@@ -1,7 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux';
-import { logout } from '../actions/authActions';
+import { clearAuthData } from '../actions/authActions';
 import { NavItem, Navbar } from 'react-materialize';
+import {clearUserData} from '../actions/userDataActions';
 
 class Header extends React.Component {
   
@@ -11,7 +12,8 @@ class Header extends React.Component {
   }
 
   signOut() {
-    this.props.dispatch(logout())
+    this.props.dispatch(clearAuthData());
+    this.props.dispatch(clearUserData());
   }
 
   render(){
@@ -48,6 +50,8 @@ class Header extends React.Component {
           <NavItem href='#/organizations'>  Organizations</NavItem>
           <NavItem href='#/departments'>Departments</NavItem>
           <NavItem href='#/jobs'>Jobs</NavItem>
+          <NavItem divider />
+          <NavItem onClick={this.signOut}>Sign Out</NavItem>
         </Navbar>
       );
     } else {

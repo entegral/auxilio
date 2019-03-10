@@ -26,3 +26,9 @@ export function saveUserDataAction({email, uid}) {
     };
   });
 };
+
+export function clearUserData(){
+  return {
+    type: 'CLEAR_USER_DATA',
+  }
+}
