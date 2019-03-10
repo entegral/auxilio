@@ -10,7 +10,7 @@ export const listStyleChild = {
     borderRadius: '3px',
     padding: '20px 30px 30px 30px',
     margin: '5px',
-    color: 'lightgrey'
+    color: 'lightgrey',
   }
 
 export const headerDiv = {

@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import { clearAuthData } from '../actions/authActions';
 import { NavItem, Navbar } from 'react-materialize';
 import {clearUserData} from '../actions/userDataActions';
@@ -14,6 +15,7 @@ class Header extends React.Component {
   signOut() {
     this.props.dispatch(clearAuthData());
     this.props.dispatch(clearUserData());
+    return <Redirect to='/'/>
   }
 
   render(){
