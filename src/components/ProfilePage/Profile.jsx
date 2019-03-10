@@ -16,17 +16,8 @@ class Profile extends React.Component {
 
   render() {
 
-    const profileStyle = {
-      display: 'flex',
-      justifyContent: 'center',
-      color: 'lightgrey',
-      backgroundColor: '#505050',
-      marginTop: '0px',
-    }
-
-
-    const { uid } = this.props.userAuthData;
-    
+    const { uid } = this.props.userData; 
+    console.log('userID', uid)
     if (uid) {
       return (
         <React.Fragment>
@@ -42,7 +33,7 @@ class Profile extends React.Component {
       );
     } else {
       return(
-        <Redirect to='/#/' />
+        <Redirect to='/' />
       )
     }
 

@@ -1,8 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import { logout } from '../actions/authActions';
-import { Icon, Button, SideNav, SideNavItem, NavItem, Navbar } from 'react-materialize';
-import {Link } from 'react-router-dom';
+import { NavItem, Navbar } from 'react-materialize';
+
 class Header extends React.Component {
   
   constructor(props){
@@ -24,7 +24,6 @@ class Header extends React.Component {
       width: '100%'
     }
 
-    
     const headerStyle = {
       margin: '5px 5px 5px 20px',
 
@@ -40,16 +39,19 @@ class Header extends React.Component {
     }
 
     if (this.props.userData.uid){
+
       return (
         <Navbar style={navBarStyle} brand='Auxilio' href='#' right className='grey darken-2'>
-          <NavItem icon='account_box' href='#!' ><Link to='/profile'> {this.props.userAuthData.email}</Link> </NavItem>
+          <NavItem href='#'>{this.props.userAuthData.email}</NavItem>
+          <NavItem icon='account_box' href='#/profile' > My Profile </NavItem>
           <NavItem divider />
-          <NavItem href='#!'> <Link to='/organizations'> Organizations</Link></NavItem>
-          <NavItem waves href='#!'><Link to='/departments'>Departments</Link></NavItem>
-          <NavItem waves href='#!'><Link to='/jobs'>Jobs</Link></NavItem>
+          <NavItem href='#/organizations'>  Organizations</NavItem>
+          <NavItem href='#/departments'>Departments</NavItem>
+          <NavItem href='#/jobs'>Jobs</NavItem>
         </Navbar>
       );
     } else {
+      
       return (
         <div style={bannerStyleLoggedOut}>
           <div>

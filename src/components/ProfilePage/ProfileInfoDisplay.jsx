@@ -53,7 +53,7 @@ class ProfileInfoDisplay extends React.Component {
 
   handleUpdateUser(){
     
-    const updateUserApiPromise = updateUserData(this.props.userData.uid, this.state._first_name, this.state._last_name)
+    const updateUserApiPromise = updateUserData(this.props.userData.uid, this.state._first_name, this.state._last_name);
     updateUserApiPromise
       .then((json)=>{
         console.log(json);

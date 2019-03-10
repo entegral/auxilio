@@ -109,25 +109,6 @@ class Login extends React.Component {
       marginTop: '20px'
     }
 
-    const hrStyle = {
-      borderTop: '1px solid #9e9e9e',
-      borderBottom: 'none',
-      width: '200px',
-      marginTop: '30px'
-    }
-
-    const hrStyle2 = {
-      borderTop: '1px solid #9e9e9e',
-      borderBottom: 'none',
-      width: '185px',
-    }
-
-    const hrStyle3 = {
-      borderTop: '1px solid #9e9e9e',
-      borderBottom: 'none',
-      width: '200px',
-    }
-
     const pStyle = {
       textAlign: 'center',
       color: 'lightgrey',
@@ -140,7 +121,7 @@ class Login extends React.Component {
       textAlign: 'center',
     }
 
-    if (this.props.userAuthData.uid){
+    if (this.props.userData.uid){
       return <Redirect to='/profile' />
     } else {
       return (
