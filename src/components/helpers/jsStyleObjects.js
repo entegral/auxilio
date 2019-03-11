@@ -20,3 +20,9 @@ export const headerDiv = {
   textAlign: 'left',
   marginBottom: '20px'
 }
+
+export const headerStyle = {
+  color: 'lightgrey',
+  margin: '4px 4px 4px 60px'
+
+}

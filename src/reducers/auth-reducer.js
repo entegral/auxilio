@@ -8,7 +8,7 @@ export default (state = {}, action ) => {
       newState = {...state, email: action.email, uid: action.uid}
       return newState;
     case 'LOGOUT':
-      newState = {...state, email: '', uid: ''}
+      newState = {}
       return newState;
     default:
       return state;

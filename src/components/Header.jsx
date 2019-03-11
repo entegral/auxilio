@@ -58,12 +58,8 @@ class Header extends React.Component {
     } else {
       
       return (
-        <div style={bannerStyleLoggedOut}>
-          <div>
-            <h2 style={headerStyle} > <a style={headerAnchorStyle} href="/">Auxilio</a> </h2>
-          </div>
-        </div>
-      );
+        <Navbar style={navBarStyle} brand='Auxilio' href='#' right className='grey darken-2'>
+        </Navbar>      );
     }
   }
 };
