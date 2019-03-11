@@ -2,6 +2,8 @@
 
 #### by Robert Bruce
 
+Latest Deployment can be found [here](https://heretoauxilio.firebaseapp.com/?action=#/profile).
+
 ## Project Proposal
 
 Auxilio is here to help you manage your workforce. It provides you with a platform to effectively manage and coordinate your constituents. Auxilio accomplishes this through the use of: 
