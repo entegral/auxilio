@@ -4,7 +4,6 @@ export function getUserData(uid = '') {
   let url_string;
   uid ? url_string = `1?uid=${uid}` : url_string = '';
   return fetch(`https://desolate-plains-77764.herokuapp.com/users/${url_string}`).then((response)=>{
-    console.log('raw api result',response);
     jsonResponse = response.json();
     return jsonResponse;
   });

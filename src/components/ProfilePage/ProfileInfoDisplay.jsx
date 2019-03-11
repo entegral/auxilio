@@ -10,13 +10,11 @@ class ProfileInfoDisplay extends React.Component {
 
   constructor(props){
     super(props);
-    console.log('component props', props)
     this.state = {
       _first_name: '',
       _last_name: '',
       _email: ''
     };
-    console.log('prof display email', this.props.userData.email);
     this.handleEmail = this.handleEmail.bind(this);
     this.handleFirstName = this.handleFirstName.bind(this);
     this.handleLastName = this.handleLastName.bind(this);
@@ -29,7 +27,6 @@ class ProfileInfoDisplay extends React.Component {
   }
 
   fillKnownData(){
-    console.log('props', this.props)
     this.setState(
       {
         _first_name: this.props.userData.first_name,
@@ -55,7 +52,6 @@ class ProfileInfoDisplay extends React.Component {
     const updateUserApiPromise = updateUserData(this.props.userData.id, this.props.userData.uid, this.state._first_name, this.state._last_name);
     updateUserApiPromise
       .then((json)=>{
-        console.log(json);
         let updateReduxPromise = getUserDataAction(this.props.userData.uid)
         updateReduxPromise.then((action)=>{
           this.props.dispatch(action)
@@ -63,7 +59,6 @@ class ProfileInfoDisplay extends React.Component {
         })
       })
       .catch((error)=>{
-        console.log(error.message)
         alert(error.message)
       })
   }
@@ -78,12 +73,23 @@ class ProfileInfoDisplay extends React.Component {
       float:'left'
     }
 
-    const {email, first_name, last_name, last_year_enrolled} = this.props.userData;
+    const {email, first_name, last_name} = this.props.userData;
 
     const sectionStyle = {
       display: 'flex',
       justifyContent: 'space-between',
       alignItems: 'center'
+    }
+    
+    let inputStyle = {
+      padding: '5px'
+    };
+
+    if (first_name == this.state._first_name && last_name == this.state._last_name){
+      inputStyle = {
+        padding: '5px',
+        border: '1px solid green'
+      }
     }
 
     return (
@@ -96,8 +102,8 @@ class ProfileInfoDisplay extends React.Component {
               fixedFooter
               trigger={<Button style={buttonStyle} className='btn-small transparent lightgrey-text'><Icon className='small'>edit</Icon></Button>}>
               <form>
-                <input type="text" value = {this.state._first_name} onChange={this.handleFirstName} placeholder='First Name'/>
-                <input type="text" value = {this.state._last_name} onChange={this.handleLastName} placeholder='Last Name'/>
+                <input style={inputStyle} type="text" value = {this.state._first_name} onChange={this.handleFirstName} placeholder='First Name'/>
+                <input style={inputStyle} type="text" value = {this.state._last_name} onChange={this.handleLastName} placeholder='Last Name'/>
                 <button onClick={this.handleUpdateUser} style={buttonStyle} className="btn waves-effect waves-light grey btn-flat" type="submit" name="action">Save
                   <Icon className="material-icons right">save</Icon>
                 </button>

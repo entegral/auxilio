@@ -3,7 +3,6 @@ export default (state = {}, action) => {
   let newState;
   switch (action.type) {
     case 'GET_USER_DATA':
-      console.log('reducer user data', action.userData)
       const { email, id, uid, first_name, last_name } = action.userData;
       newState = {
         ...state,

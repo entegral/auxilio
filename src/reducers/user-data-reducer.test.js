@@ -13,7 +13,6 @@ describe('authReducer', () => {
     let userData; 
     getUserDataAction('3').then((json)=>{
       userData = json;
-      console.log(userData);
       return expect(userDataReducer({}, userData)).toEqual({});
     })
     

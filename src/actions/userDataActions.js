@@ -5,7 +5,6 @@ import { errorAction } from './errorActions';
 export function getUserDataAction(uid){
   const userDataPromise = getUserData(uid);
   return userDataPromise.then((userData)=>{
-    console.log('action getuserdata response', userData);
     if (userData.message){
       return errorAction(userData.message);
     } else {

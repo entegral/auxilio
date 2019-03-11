@@ -58,12 +58,10 @@ class Login extends React.Component {
         })
         .then(()=>{
           saveUserDataAction({ email: this.state.email, uid: this.props.userAuthData.uid }).then((action)=>{
-            console.log(action);
             this.props.dispatch(action);
           })
         })
         .catch((loginError) => {
-          console.log('error message', loginError.message);
           this.props.dispatch(errorAction(loginError.message));
         });
     } else {
@@ -76,7 +74,7 @@ class Login extends React.Component {
     const componentStyle = {
       display: 'flex',
       justifyContent: 'center',
-      marginTop: '10%',
+      marginTop: '5%',
     }
 
     const formStyle = {
