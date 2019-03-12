@@ -1,7 +1,7 @@
 import v4 from 'uuid';
 
-const link = 'https://desolate-plains-77764.herokuapp.com/';
-// const link = 'http://localhost:3001/';
+// const link = 'https://desolate-plains-77764.herokuapp.com/';
+const link = 'http://localhost:3001/';
 
 export function getUserData(uid = '') {
   let jsonResponse;
@@ -58,9 +58,19 @@ export function addExistingOrgToUser(requester_uid, org_uid) {
 export function addNewOrgToUser(requester_uid, org_name) {
   const org_uid = v4();
   const action = 'addNewOrgToUser'
-  return fetch(`${link}organizations?requester_uid=${requester_uid}&org_uid=${org_uid}&name=${org_name}&apiAction=${action}`, {
+  return fetch(`${link}userActions?requester_uid=${requester_uid}&org_uid=${org_uid}&org_name=${org_name}&apiAction=${action}`, {
     method: 'POST'
   }).then((response) => {
     return response.json();
   });
 };
+
+export function removeOrgFromUser(requester_uid, org_uid) {
+  const action = 'removeOrgFromUser'
+  return fetch(`${link}userActions?requester_uid=${requester_uid}&org_uid=${org_uid}&apiAction=${action}`, {
+    method: 'POST'
+  }).then((response) => {
+    return response.json();
+  });
+}
+
