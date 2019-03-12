@@ -4,7 +4,7 @@ import { Redirect } from 'react-router-dom';
 import ProfileInfoDisplay from './ProfileInfoDisplay';
 import ProfileOrgDisplay from './ProfileOrgDisplay';
 import ProfileJobDisplay from './ProfileJobDisplay';
-import { headerDiv, headerStyle } from '../helpers/jsStyleObjects';
+import { headerDiv, headerStyle } from '../../helpers/jsStyleObjects';
 import {Col, Row} from 'react-materialize';
 
 class Profile extends React.Component {

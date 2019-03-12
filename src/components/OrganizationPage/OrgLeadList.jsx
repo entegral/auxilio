@@ -1,6 +1,6 @@
 import React from 'react';
 import OrgLeadDetail from './OrgLeadDetail';
-import { listStyleChild } from '../helpers/jsStyleObjects';
+import { listStyleChild } from '../../helpers/jsStyleObjects';
 
 function OrgLeadList() {
   

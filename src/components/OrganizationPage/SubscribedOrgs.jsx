@@ -1,6 +1,6 @@
 import React from 'react'
 import Organization from './Organization';
-import { headerDiv, headerStyle, listStyleChild } from '../helpers/jsStyleObjects';
+import { headerDiv, headerStyle, listStyleChild } from '../../helpers/jsStyleObjects';
 import { Col, Row, Button, Icon, Modal } from 'react-materialize';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';

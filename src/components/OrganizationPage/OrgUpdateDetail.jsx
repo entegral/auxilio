@@ -1,5 +1,5 @@
 import React from 'react'
-import { listStyleChild } from '../helpers/jsStyleObjects';
+import { listStyleChild } from '../../helpers/jsStyleObjects';
 
 function OrgUpdateDetail () {
   return (

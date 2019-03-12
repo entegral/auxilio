@@ -1,5 +1,5 @@
 import React from 'react'
-import { listStyleChild } from '../helpers/jsStyleObjects';
+import { listStyleChild } from '../../helpers/jsStyleObjects';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import {Button, Modal, Icon} from 'react-materialize';
