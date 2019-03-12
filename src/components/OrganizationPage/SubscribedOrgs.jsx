@@ -3,7 +3,7 @@ import Organization from './Organization';
 import { headerDiv, headerStyle } from '../helpers/jsStyleObjects';
 import { Col, Row } from 'react-materialize';
 import { connect } from 'react-redux';
-
+import { AddOrganization } from './AddOrganization'
 class SubscribedOrgs extends React.Component {
   
   constructor(props){
@@ -37,7 +37,9 @@ class SubscribedOrgs extends React.Component {
       );
     } else {
       return (
-        <div>there are no organizations to show you!</div>
+        <React.Fragment>
+          <AddOrganization />
+        </React.Fragment>
       )
     }
 
