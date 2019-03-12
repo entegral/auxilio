@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 import { loginAction, signUpAction } from '../actions/authActions';
 import { saveUserDataAction, getUserDataAction } from '../actions/userDataActions';
 import { errorAction } from '../actions/errorActions';
-import { getUserOrgsAction } from '../actions/organizationActions';
+import { getUserOrgsAction, updateSuggestedOrgActions } from '../actions/organizationActions';
+import { getPublicOrgs } from '../apis/auxilioServerApi';
 
 class Login extends React.Component {
 
@@ -46,7 +47,12 @@ class Login extends React.Component {
         }).then(() => {
           getUserOrgsAction(this.props.userAuthData.uid).then((action) => {
             this.props.dispatch(action);
-          }).catch((error) => {
+          }).then(() => {
+            getPublicOrgs(this.props.userAuthData.uid).then((suggestedOrgs) => {
+              this.props.dispatch(updateSuggestedOrgActions(suggestedOrgs));
+            })
+          })
+          .catch((error) => {
             console.log(error.message);
           })
         });
@@ -71,7 +77,12 @@ class Login extends React.Component {
             }).then(()=>{
               getUserOrgsAction(this.props.userAuthData.uid).then((action) => {
                 this.props.dispatch(action);
-              }).catch((error) => {
+              }).then(()=>{
+                getPublicOrgs(this.props.userAuthData.uid).then((suggestedOrgs) => {
+                  this.props.dispatch({ suggestedOrgs });
+                })
+              })
+              .catch((error) => {
                 console.log(error.message);
               })
             })

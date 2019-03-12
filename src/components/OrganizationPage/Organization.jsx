@@ -1,7 +1,7 @@
 import React from 'react';
 import {Button, Icon} from 'react-materialize';
 
-function Organization({ org, key, removeOrg }) {
+function Organization({ org, removeOrg }) {
   
   const orgDivStyle = {
     backgroundColor: '#838383',

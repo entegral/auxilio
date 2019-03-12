@@ -19,8 +19,6 @@ class Profile extends React.Component {
 
     const { uid } = this.props.userData; 
     
-    
-    
     if (uid) {
       return (
         <React.Fragment>

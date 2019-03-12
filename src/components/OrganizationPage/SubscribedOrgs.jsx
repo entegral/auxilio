@@ -1,10 +1,11 @@
 import React from 'react'
 import Organization from './Organization';
+import AddOrganization from './AddOrganization'
 import { headerDiv, headerStyle, listStyleChild } from '../../helpers/jsStyleObjects';
 import { Col, Row, Button, Icon, Modal } from 'react-materialize';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import { addExistingOrgToUser, addNewOrgToUser, removeOrgFromUser } from '../../apis/auxilioServerApi';
+import { addExistingOrgToUser, addNewOrgToUser, removeOrgFromUser, getPublicOrgs } from '../../apis/auxilioServerApi';
 import { updateUserOrgAction } from '../../actions/organizationActions';
 
 class SubscribedOrgs extends React.Component {
@@ -19,12 +20,10 @@ class SubscribedOrgs extends React.Component {
     this.handleOrgPassword = this.handleOrgPassword.bind(this);
     this.handleOrgUid = this.handleOrgUid.bind(this);
     this.handleAddOrg = this.handleAddOrg.bind(this);
+    this.handleAddSuggestedOrg = this.handleAddSuggestedOrg.bind(this);
     this.handleOrgName = this.handleOrgName.bind(this);
     this.handleCreateOrg = this.handleCreateOrg.bind(this);
     this.handleRemoveOrgFromUser = this.handleRemoveOrgFromUser.bind(this);
-  }
-
-  componentDidMount(){
   }
 
   handleOrgUid(event){
@@ -44,6 +43,14 @@ class SubscribedOrgs extends React.Component {
       this.props.dispatch(updateUserOrgAction(newUserOrgs));
       return <Redirect to='/organizations' />
     });
+  }
+
+  handleAddSuggestedOrg(org_uid){
+    addExistingOrgToUser(this.props.userAuthData.uid, org_uid).then((newUserOrgs) => {
+      this.props.dispatch(updateUserOrgAction(newUserOrgs));
+      return <Redirect to='/organizations' />
+    });
+
   }
 
   handleCreateOrg(){
@@ -71,7 +78,6 @@ class SubscribedOrgs extends React.Component {
 
     const buttonStyle = {
       border: '1px solid lightgrey'
-
     }
 
     let inputStyle = {
@@ -105,6 +111,15 @@ class SubscribedOrgs extends React.Component {
                   <Icon className="material-icons right">add</Icon>
                       </button>
                     </form>
+                    <h6>Public Orgs With Open Enrollment</h6>
+                    <div style={listStyleChild}>
+                      {this.props.suggestedOrgList.map((org) =>
+                        <AddOrganization
+                          org={org}
+                          key={org.uid}
+                          addOrg={this.handleAddSuggestedOrg} />
+                      )}
+                    </div>
                   </Modal>
                 </h6> 
                 {this.props.orgList.map((org) =>
@@ -151,6 +166,7 @@ class SubscribedOrgs extends React.Component {
 const mapPropsToState = state => {
   return {
     orgList: state.orgs.subscribed,
+    suggestedOrgList: state.orgs.suggested,
     userAuthData: state.userAuthData
   }
 }
