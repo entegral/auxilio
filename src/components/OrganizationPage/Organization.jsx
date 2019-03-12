@@ -1,30 +1,24 @@
 import React from 'react';
-import { headerDiv, headerStyle } from '../helpers/jsStyleObjects';
-import OrgUpdateList from './OrgUpdateList';
-import OrgLeadList from './OrgLeadList';
-import OrgDeptList from './OrgDeptList';
-import { Col, Row} from 'react-materialize';
 
-function Organization () {
+function Organization ({ org }) {
   
+  const orgDivStyle = {
+    backgroundColor: '#838383',
+    margin: '15px',
+    padding: '20px',
+    borderRadius: '3px'
+  }
+
+  const titleStyle = {
+    color: 'lightgrey'
+  }
+
   return (
     <React.Fragment>
-      <div style={headerDiv}>
-        <h6 style={headerStyle}>My Organizations</h6>
+      <div style={orgDivStyle}>
+        <h6 style={titleStyle}>{ org.name }</h6>
       </div>
-      <Row>
-
-        <Col s={12} m={8} l={8} >
-          <OrgUpdateList />
-        </Col>
-        <Col s={12} m={4} l={4}>
-          <OrgLeadList />
-        </Col>
-        <Col s={12} m={8} l={8}>
-          <OrgDeptList />
-        </Col>
       
-      </Row>
     </React.Fragment>
   );
   

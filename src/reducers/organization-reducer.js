@@ -1,7 +1,7 @@
 export default (state = {}, action) => {
   let newState;
   switch (action.type) {
-    case 'GET_USER_ORGS':
+    case 'UPDATE_USER_ORGS':
       
       newState = {
         ...state,

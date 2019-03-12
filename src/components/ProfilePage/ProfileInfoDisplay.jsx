@@ -85,7 +85,7 @@ class ProfileInfoDisplay extends React.Component {
       padding: '5px'
     };
 
-    if (first_name == this.state._first_name && last_name == this.state._last_name){
+    if (first_name === this.state._first_name && last_name === this.state._last_name){
       inputStyle = {
         padding: '5px',
         border: '1px solid green'

@@ -45,3 +45,22 @@ export function getUserOrgs(requester_uid) {
     })
 }
 
+export function addExistingOrgToUser(requester_uid, org_uid) {
+  const action = 'addExistingOrgToUser'
+  return fetch(`${link}userActions?requester_uid=${requester_uid}&org_uid=${org_uid}&apiAction=${action}`, {
+    method: 'POST'
+  }).then((response) => {
+    return response.json();
+  });
+}
+
+
+export function addNewOrgToUser(requester_uid, org_name) {
+  const org_uid = v4();
+  const action = 'addNewOrgToUser'
+  return fetch(`${link}organizations?requester_uid=${requester_uid}&org_uid=${org_uid}&name=${org_name}&apiAction=${action}`, {
+    method: 'POST'
+  }).then((response) => {
+    return response.json();
+  });
+};

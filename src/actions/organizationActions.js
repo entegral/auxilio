@@ -4,7 +4,7 @@ export function getUserOrgsAction(requester_uid){
   return getUserOrgs(requester_uid)
     .then((response)=>{
       return {
-        type: 'GET_USER_ORGS',
+        type: 'UPDATE_USER_ORGS',
         orgs: response
       }
     }).catch((response)=>{
@@ -12,3 +12,9 @@ export function getUserOrgsAction(requester_uid){
     });
 }
 
+export function updateUserOrgAction(newUserOrgs){
+  return {
+    type: 'UPDATE_USER_ORGS',
+    orgs: newUserOrgs
+  }
+}

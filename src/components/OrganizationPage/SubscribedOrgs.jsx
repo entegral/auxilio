@@ -4,15 +4,38 @@ import { headerDiv, headerStyle, listStyleChild } from '../helpers/jsStyleObject
 import { Col, Row, Button, Icon, Modal } from 'react-materialize';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import { addExistingOrgToUser } from '../../apis/auxilioServerApi';
+import { updateUserOrgAction } from '../../actions/organizationActions';
 
 class SubscribedOrgs extends React.Component {
   
   constructor(props){
     super(props);
-    this.state = {}
+    this.state = {
+      _org_uid: '',
+      _org_password: ''
+    }
+    this.handleOrgPassword = this.handleOrgPassword.bind(this);
+    this.handleOrgUid = this.handleOrgUid.bind(this);
+    this.handleAddOrg = this.handleAddOrg.bind(this);
   }
 
   componentDidMount(){
+  }
+
+  handleOrgUid(event){
+    this.setState({_org_uid: event.target.value})
+  }
+
+  handleOrgPassword(event){
+    this.setState({_org_password: event.target.value})
+  }
+
+  handleAddOrg(){
+    addExistingOrgToUser(this.props.userAuthData.uid, this.state._org_uid).then((newUserOrgs)=>{
+      this.props.dispatch(updateUserOrgAction(newUserOrgs))
+    });
+
   }
 
   render (){
@@ -28,10 +51,16 @@ class SubscribedOrgs extends React.Component {
 
     }
 
+    let inputStyle = {
+      padding: '5px'
+    };
+
     let message;
+
     console.log('authdata:', this.props.userAuthData);
+    
     if (this.props.userAuthData && this.props.userAuthData.uid){
-      this.props.orgList.length === 0 ? message = 'You haven\' added any organizations yet.' : message = '';
+      this.props.orgList.length === 0 ? message = 'You haven\' added any organizations yet.' : message = 'Subscriptions';
       return (
         <React.Fragment>
           <div style={headerDiv}>
@@ -46,11 +75,17 @@ class SubscribedOrgs extends React.Component {
                   <Modal
                     header='Modal Header'
                     trigger={<Button style={buttonStyle} className='btn-small transparent lightgrey-text'><Icon className='small'>add</Icon></Button>}>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+                    <form>
+                      <input style={inputStyle} type="text" value={this.state._org_uid} onChange={this.handleOrgUid} placeholder='Org ID' />
+                      <input style={inputStyle} type="text" value={this.state._org_password} onChange={this.handleOrgPassword} placeholder='Org Password' />
+                      <button onClick={this.handleAddOrg} style={buttonStyle} className="btn waves-effect waves-light grey btn-flat" type="submit" name="action">Add
+                  <Icon className="material-icons right">add</Icon>
+                      </button>
+                    </form>
                   </Modal>
                 </h6> 
                 {this.props.orgList.map((org) =>
-                  <Organization org={org} />
+                  <Organization org={org} key={org.uid}/>
                 )}
               </div>
             </Col>
