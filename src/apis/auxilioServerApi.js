@@ -1,7 +1,7 @@
 import v4 from 'uuid';
 
-// const link = 'https://desolate-plains-77764.herokuapp.com/';
-const link = 'http://localhost:3001/';
+const link = 'https://desolate-plains-77764.herokuapp.com/';
+// const link = 'http://localhost:3001/';
 
 export function getUserData(uid = '') {
   let jsonResponse;
