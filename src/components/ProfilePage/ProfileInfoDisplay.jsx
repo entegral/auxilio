@@ -96,7 +96,7 @@ class ProfileInfoDisplay extends React.Component {
       <React.Fragment>  
         <div style={listStyleChild}>
           <div style={sectionStyle}>
-            <h5 style={headerStyle}>Personal Information</h5>
+            <h5 style={headerStyle}>Contact Information</h5>
             <Modal
               header='Edit User Info'
               fixedFooter

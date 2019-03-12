@@ -4,7 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 import Header from './Header';
 import Login from './Login';
 import Profile from './ProfilePage/Profile';
-import Organization from './OrganizationPage/Organization'
+import SubscribedOrgs from './OrganizationPage/SubscribedOrgs'
 
 function App() {
   return (
@@ -13,7 +13,7 @@ function App() {
       <Switch>
         <Route exact path='/' component={Login} />
         <Route exact path='/profile' component={Profile} />
-        <Route exact path='/organizations' component={Organization} />
+        <Route exact path='/organizations' component={SubscribedOrgs} />
       </Switch>
     </React.Fragment>
   );

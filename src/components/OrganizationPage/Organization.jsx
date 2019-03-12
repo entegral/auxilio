@@ -2,19 +2,16 @@ import React from 'react';
 import OrgUpdateList from './OrgUpdateList';
 import OrgLeadList from './OrgLeadList';
 import OrgDeptList from './OrgDeptList';
-import { listStyleParent } from '../helpers/jsStyleObjects';
+import { headerDiv, headerStyle } from '../helpers/jsStyleObjects';
 import { Col, Row} from 'react-materialize';
 
 function Organization () {
-
-  const orgHeaderStyle = {
-    display: 'flex',
-    justifyContent: 'center'
-  }
-
+  
   return (
     <React.Fragment>
-      <h1 style = {orgHeaderStyle}>[OrganizationTitle] Communications Page</h1>  
+      <div style={headerDiv}>
+        <h6 style={headerStyle}>My Organizations</h6>
+      </div>
       <Row>
 
         <Col s={12} m={8} l={8} >
@@ -30,6 +27,7 @@ function Organization () {
       </Row>
     </React.Fragment>
   );
+  
 };
 
 export default Organization;

@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { loginAction, signUpAction } from '../actions/authActions';
 import { saveUserDataAction, getUserDataAction } from '../actions/userDataActions';
 import { errorAction } from '../actions/errorActions';
+import { getUserOrgsAction } from '../actions/organizationActions';
 
 class Login extends React.Component {
 
@@ -42,6 +43,12 @@ class Login extends React.Component {
       }).then(()=>{
         getUserDataAction(this.props.userAuthData.uid).then((action)=>{
           this.props.dispatch(action);
+        }).then(() => {
+          getUserOrgsAction(this.props.userAuthData.uid).then((action) => {
+            this.props.dispatch(action);
+          }).catch((error) => {
+            console.log(error.message);
+          })
         });
       })
       .catch((loginError) => {
@@ -57,9 +64,17 @@ class Login extends React.Component {
           this.props.dispatch(action);
         })
         .then(()=>{
-          saveUserDataAction({ email: this.state.email, uid: this.props.userAuthData.uid }).then((action)=>{
-            this.props.dispatch(action);
-          })
+          saveUserDataAction({ email: this.state.email, uid: this.props.userAuthData.uid })
+            .then((action)=>{
+              this.props.dispatch(action);
+
+            }).then(()=>{
+              getUserOrgsAction(this.props.userAuthData.uid).then((action) => {
+                this.props.dispatch(action);
+              }).catch((error) => {
+                console.log(error.message);
+              })
+            })
         })
         .catch((loginError) => {
           this.props.dispatch(errorAction(loginError.message));
