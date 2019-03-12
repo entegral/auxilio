@@ -1,8 +1,8 @@
 import React from 'react';
+import { headerDiv, headerStyle } from '../helpers/jsStyleObjects';
 import OrgUpdateList from './OrgUpdateList';
 import OrgLeadList from './OrgLeadList';
 import OrgDeptList from './OrgDeptList';
-import { headerDiv, headerStyle } from '../helpers/jsStyleObjects';
 import { Col, Row} from 'react-materialize';
 
 function Organization () {
