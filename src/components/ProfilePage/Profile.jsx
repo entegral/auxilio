@@ -2,8 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import ProfileInfoDisplay from './ProfileInfoDisplay';
-import ProfileOrgDisplay from './ProfileOrgDisplay';
-import ProfileJobDisplay from './ProfileJobDisplay';
 import { headerDiv, headerStyle } from '../../helpers/jsStyleObjects';
 import {Col, Row} from 'react-materialize';
 
@@ -28,12 +26,6 @@ class Profile extends React.Component {
           <Row>
             <Col s={12} m={8} l={8} >
               <ProfileInfoDisplay/>
-            </Col>
-            <Col s={12} m={4} l={4} >
-              <ProfileOrgDisplay/>
-            </Col>  
-            <Col s={12} m={8} l={8} >
-              <ProfileJobDisplay/>
             </Col>
           </Row>
         </React.Fragment>

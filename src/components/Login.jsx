@@ -5,7 +5,7 @@ import { loginAction, signUpAction } from '../actions/authActions';
 import { saveUserDataAction, getUserDataAction } from '../actions/userDataActions';
 import { errorAction } from '../actions/errorActions';
 import { getUserOrgsAction, updateSuggestedOrgActions } from '../actions/organizationActions';
-import { getPublicOrgs } from '../apis/auxilioServerApi';
+import { getPublicOrgs, getUserOrgs, saveUserData, getUserData } from '../apis/auxilioServerApi';
 
 class Login extends React.Component {
 
@@ -39,57 +39,38 @@ class Login extends React.Component {
   login (event) {
     event.preventDefault();
     loginAction(this.state.email, this.state.password)
-      .then((action)=>{
-        this.props.dispatch(action);
-      }).then(()=>{
-        getUserDataAction(this.props.userAuthData.uid).then((action)=>{
-          this.props.dispatch(action);
-        }).then(() => {
-          getUserOrgsAction(this.props.userAuthData.uid).then((action) => {
-            this.props.dispatch(action);
-          }).then(() => {
-            getPublicOrgs(this.props.userAuthData.uid).then((suggestedOrgs) => {
-              this.props.dispatch(updateSuggestedOrgActions(suggestedOrgs));
-            })
-          })
-          .catch((error) => {
-            console.log(error.message);
-          })
-        });
+      .then((action)=>{this.props.dispatch(action)})
+      .then(()=>{
+        getUserData(this.props.userAuthData.uid)
+          .then((action) => { this.props.dispatch(getUserDataAction(action)) })
+          .catch((loginError) => { this.props.dispatch(errorAction('error in getUserDataAction')) });
+        getUserOrgs(this.props.userAuthData.uid)
+          .then((userOrgs) => { this.props.dispatch(getUserOrgsAction(userOrgs)) })
+          .catch((loginError) => { this.props.dispatch(errorAction('error in getUserOrgs')) });
+        getPublicOrgs(this.props.userAuthData.uid)
+          .then((suggestedOrgs) => { this.props.dispatch(updateSuggestedOrgActions(suggestedOrgs)) })
+          .catch((loginError) => { this.props.dispatch(errorAction('error in getPublicOrgs')) });
       })
-      .catch((loginError) => {
-        this.props.dispatch(errorAction(loginError.message));
-      });
+      .catch((loginError) => {this.props.dispatch(errorAction(loginError.message))});
   };
 
   createUser (event){
     event.preventDefault();
     if (this.state.password === this.state.confirm_password){
       signUpAction(this.state.email, this.state.password)
-        .then((action)=>{
-          this.props.dispatch(action);
-        })
+        .then((action)=>{this.props.dispatch(action)})
         .then(()=>{
-          saveUserDataAction({ email: this.state.email, uid: this.props.userAuthData.uid })
-            .then((action)=>{
-              this.props.dispatch(action);
-
-            }).then(()=>{
-              getUserOrgsAction(this.props.userAuthData.uid).then((action) => {
-                this.props.dispatch(action);
-              }).then(()=>{
-                getPublicOrgs(this.props.userAuthData.uid).then((suggestedOrgs) => {
-                  this.props.dispatch({ suggestedOrgs });
-                })
-              })
-              .catch((error) => {
-                console.log(error.message);
-              })
-            })
+          saveUserData(this.state.email, this.props.userAuthData.uid)
+            .then((userData) => { this.props.dispatch(saveUserDataAction(userData)) })
+            .catch((loginError) => { this.props.dispatch(errorAction(loginError.message)) });
+          getUserOrgsAction(this.props.userAuthData.uid)
+            .then((action) => { this.props.dispatch(action) })
+            .catch((loginError) => { this.props.dispatch(errorAction(loginError.message)) });
+          getPublicOrgs(this.props.userAuthData.uid)
+            .then((suggestedOrgs) => { this.props.dispatch({ suggestedOrgs }) })
+            .catch((loginError) => { this.props.dispatch(errorAction(loginError.message)) });
         })
-        .catch((loginError) => {
-          this.props.dispatch(errorAction(loginError.message));
-        });
+        .catch((loginError) => {this.props.dispatch(errorAction(loginError.message))});
     } else {
       this.props.dispatch(errorAction('the passwords you entered did not match.'));
     };

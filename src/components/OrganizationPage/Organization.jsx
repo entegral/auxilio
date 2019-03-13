@@ -18,7 +18,6 @@ function Organization({ org, removeOrg }) {
 
   
   function onRemoveOrg(){
-    console.log('org', org.uid)
     removeOrg(org.uid);
   }
 

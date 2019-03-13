@@ -51,12 +51,9 @@ class ProfileInfoDisplay extends React.Component {
   handleUpdateUser(){
     const updateUserApiPromise = updateUserData(this.props.userData.id, this.props.userData.uid, this.state._first_name, this.state._last_name);
     updateUserApiPromise
-      .then((json)=>{
-        let updateReduxPromise = getUserDataAction(this.props.userData.uid)
-        updateReduxPromise.then((action)=>{
-          this.props.dispatch(action)
-          return <Redirect to='/profile' />
-        })
+      .then((userData)=>{
+        this.props.dispatch(getUserDataAction(userData));
+        return <Redirect to='/profile' />
       })
       .catch((error)=>{
         alert(error.message)

@@ -61,7 +61,6 @@ class SubscribedOrgs extends React.Component {
   }
 
   handleRemoveOrgFromUser(org_uid){
-    console.log(org_uid);
     removeOrgFromUser(this.props.userAuthData.uid, org_uid).then((newUserOrgs)=>{
       this.props.dispatch(updateUserOrgAction(newUserOrgs));
       return <Redirect to='/organizations' />
@@ -86,7 +85,6 @@ class SubscribedOrgs extends React.Component {
 
     let message;
 
-    console.log('authdata:', this.props.userAuthData);
     
     if (this.props.userAuthData && this.props.userAuthData.uid){
       this.props.orgList.length === 0 ? message = 'You haven\' added any organizations yet.' : message = 'Subscriptions';
