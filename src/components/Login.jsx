@@ -62,12 +62,14 @@ class Login extends React.Component {
         .then(()=>{
           saveUserData(this.state.email, this.props.userAuthData.uid)
             .then((userData) => { this.props.dispatch(saveUserDataAction(userData)) })
-            .catch((loginError) => { this.props.dispatch(errorAction(loginError.message)) });
-          getUserOrgsAction(this.props.userAuthData.uid)
-            .then((action) => { this.props.dispatch(action) })
-            .catch((loginError) => { this.props.dispatch(errorAction(loginError.message)) });
-          getPublicOrgs(this.props.userAuthData.uid)
-            .then((suggestedOrgs) => { this.props.dispatch({ suggestedOrgs }) })
+            .then(()=>{
+              getUserOrgs(this.props.userAuthData.uid)
+                .then((userOrgs) => { this.props.dispatch(getUserOrgsAction(userOrgs)) })
+                .catch((loginError) => { this.props.dispatch(errorAction(loginError.message)) });
+              getPublicOrgs(this.props.userAuthData.uid)
+                .then((suggestedOrgs) => { this.props.dispatch(updateSuggestedOrgActions(suggestedOrgs)) })
+                .catch((loginError) => { this.props.dispatch(errorAction(loginError.message)) });
+            })
             .catch((loginError) => { this.props.dispatch(errorAction(loginError.message)) });
         })
         .catch((loginError) => {this.props.dispatch(errorAction(loginError.message))});
