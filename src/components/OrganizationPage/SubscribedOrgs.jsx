@@ -6,7 +6,7 @@ import { Col, Row, Button, Icon, Modal } from 'react-materialize';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { addExistingOrgToUser, addNewOrgToUser, removeOrgFromUser, getPublicOrgs } from '../../apis/auxilioServerApi';
-import { updateUserOrgAction } from '../../actions/organizationActions';
+import { updateUserOrgAction, updateSuggestedOrgActions } from '../../actions/organizationActions';
 
 class SubscribedOrgs extends React.Component {
   
@@ -39,32 +39,37 @@ class SubscribedOrgs extends React.Component {
   }
 
   handleAddOrg(){
-    addExistingOrgToUser(this.props.userAuthData.uid, this.state._org_uid).then((newUserOrgs)=>{
-      this.props.dispatch(updateUserOrgAction(newUserOrgs));
-      return <Redirect to='/organizations' />
-    });
+    addExistingOrgToUser(this.props.userAuthData.uid, this.state._org_uid)
+      .then((newUserOrgs)=>{
+        this.props.dispatch(updateUserOrgAction(newUserOrgs));
+        return <Redirect to='#/organizations' />
+      });
   }
 
   handleAddSuggestedOrg(org_uid){
-    addExistingOrgToUser(this.props.userAuthData.uid, org_uid).then((newUserOrgs) => {
-      this.props.dispatch(updateUserOrgAction(newUserOrgs));
-      return <Redirect to='/organizations' />
-    });
+    addExistingOrgToUser(this.props.userAuthData.uid, org_uid)
+      .then((newUserOrgs) => {
+        this.props.dispatch(updateUserOrgAction(newUserOrgs));
+        return <Redirect to='#/organizations' />
+      });
 
   }
 
   handleCreateOrg(){
-    addNewOrgToUser(this.props.userAuthData.uid, this.state._org_name).then((newUserOrgs)=>{
-      this.props.dispatch(updateUserOrgAction(newUserOrgs));
-      return <Redirect to='/organizations' />
-    })
+    addNewOrgToUser(this.props.userAuthData.uid, this.state._org_name)
+      .then((newUserSubscribedOrgs)=>{
+        this.props.dispatch(updateUserOrgAction(newUserSubscribedOrgs));
+        this.props.dispatch(updateSuggestedOrgActions(newUserSubscribedOrgs));
+        return <Redirect to='#/organizations' />
+      })
   }
 
   handleRemoveOrgFromUser(org_uid){
-    removeOrgFromUser(this.props.userAuthData.uid, org_uid).then((newUserOrgs)=>{
-      this.props.dispatch(updateUserOrgAction(newUserOrgs));
-      return <Redirect to='/organizations' />
-    })
+    removeOrgFromUser(this.props.userAuthData.uid, org_uid)
+      .then((newUserOrgs)=>{
+        this.props.dispatch(updateUserOrgAction(newUserOrgs));
+        return <Redirect to='#/organizations' />
+      })
   }
 
   render (){

@@ -21,7 +21,7 @@ class ProfileInfoDisplay extends React.Component {
     this.handleUpdateUser = this.handleUpdateUser.bind(this);
     this.fillKnownData = this.fillKnownData.bind(this);
   }
-
+  
   componentDidMount(){
     this.timerID = setTimeout(()=>this.fillKnownData(), 1000);
   }
@@ -49,14 +49,10 @@ class ProfileInfoDisplay extends React.Component {
   }
 
   handleUpdateUser(){
-    const updateUserApiPromise = updateUserData(this.props.userData.id, this.props.userData.uid, this.state._first_name, this.state._last_name);
-    updateUserApiPromise
+    console.log(this.props.userAuthData.uid, this.state._first_name, this.state._last_name)
+    updateUserData(this.props.userAuthData.uid, this.state._first_name, this.state._last_name)
       .then((userData)=>{
         this.props.dispatch(getUserDataAction(userData));
-        return <Redirect to='/profile' />
-      })
-      .catch((error)=>{
-        alert(error.message)
       })
   }
 
@@ -97,13 +93,15 @@ class ProfileInfoDisplay extends React.Component {
             <Modal
               header='Edit User Info'
               fixedFooter
-              trigger={<Button style={buttonStyle} className='btn-small transparent lightgrey-text'><Icon className='small'>edit</Icon></Button>}>
+              trigger={<Button style={buttonStyle} className='btn-small transparent lightgrey-text'><Icon className='small'>edit</Icon></Button>}
+              actions={
+                <div>
+                  <Button flat modal="close" waves="light">Close</Button>
+                  <Button onClick={this.handleUpdateUser} className="btn waves-effect waves-light grey btn-flat" type="submit" name="action">Save<Icon className="material-icons right">save</Icon></Button>
+                </div>} >
               <form>
                 <input style={inputStyle} type="text" value = {this.state._first_name} onChange={this.handleFirstName} placeholder='First Name'/>
                 <input style={inputStyle} type="text" value = {this.state._last_name} onChange={this.handleLastName} placeholder='Last Name'/>
-                <button onClick={this.handleUpdateUser} style={buttonStyle} className="btn waves-effect waves-light grey btn-flat" type="submit" name="action">Save
-                  <Icon className="material-icons right">save</Icon>
-                </button>
               </form>
             </Modal>
           </div>
@@ -121,7 +119,8 @@ class ProfileInfoDisplay extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    userData: state.userData
+    userData: state.userData,
+    userAuthData: state.userAuthData
   }
 }
 
