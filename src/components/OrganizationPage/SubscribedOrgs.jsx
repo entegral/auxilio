@@ -106,13 +106,15 @@ class SubscribedOrgs extends React.Component {
                   {message}
                   <Modal
                     header='Add Organization to Your List'
-                    trigger={<Button style={buttonStyle} className='btn-small transparent lightgrey-text'><Icon className='small'>add</Icon></Button>}>
+                    trigger={<Button style={buttonStyle} className='btn-small transparent lightgrey-text'><Icon className='small'>add</Icon></Button>}
+                    actions={
+                      <div>
+                        <Button flat modal="close" waves="light">Close</Button>
+                        <Button onClick={this.handleAddOrg} flat waves="light" type="submit" name="action">Add<Icon className="material-icons right">add</Icon></Button>
+                      </div>}>
                     <form>
                       <input style={inputStyle} type="text" value={this.state._org_uid} onChange={this.handleOrgUid} placeholder='Org ID' />
                       <input style={inputStyle} type="text" value={this.state._org_password} onChange={this.handleOrgPassword} placeholder='Org Password' />
-                      <button onClick={this.handleAddOrg} style={buttonStyle} className="btn waves-effect waves-light grey btn-flat" type="submit" name="action">Add
-                  <Icon className="material-icons right">add</Icon>
-                      </button>
                     </form>
                     <h6>Public Orgs With Open Enrollment</h6>
                     <div style={listStyleChild}>
@@ -140,13 +142,15 @@ class SubscribedOrgs extends React.Component {
                   Create
                   <Modal
                     header='Create Organization'
-                    trigger={<Button style={buttonStyle} className='btn-small transparent lightgrey-text'><Icon className='small'>create</Icon></Button>}>
+                    trigger={<Button style={buttonStyle} className='btn-small transparent lightgrey-text'><Icon className='small'>create</Icon></Button>}
+                    actions={
+                      <div>
+                        <Button flat modal="close" waves="light">Close</Button>
+                        <Button onClick={this.handleCreateOrg} flat waves="light" type="submit" name="action">Create<Icon className="material-icons right">Create</Icon></Button>
+                      </div>}>
                     <form>
                       <input style={inputStyle} type="text" value={this.state._org_name} onChange={this.handleOrgName} placeholder='Organization Name' />
                       <input style={inputStyle} type="text" value={this.state._org_password} onChange={this.handleOrgPassword} placeholder='Org Password (optional)' />
-                      <button onClick={this.handleCreateOrg} style={buttonStyle} className="btn waves-effect waves-light grey btn-flat" type="submit" name="action">Create
-                      <Icon className="material-icons right">create</Icon>
-                      </button>
                     </form>
                   </Modal>
                 </h6> 

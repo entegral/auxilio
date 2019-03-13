@@ -97,7 +97,7 @@ class ProfileInfoDisplay extends React.Component {
               actions={
                 <div>
                   <Button flat modal="close" waves="light">Close</Button>
-                  <Button onClick={this.handleUpdateUser} className="btn waves-effect waves-light grey btn-flat" type="submit" name="action">Save<Icon className="material-icons right">save</Icon></Button>
+                  <Button onClick={this.handleUpdateUser} flat waves="light" type="submit" name="action">Save<Icon className="material-icons right">save</Icon></Button>
                 </div>} >
               <form>
                 <input style={inputStyle} type="text" value = {this.state._first_name} onChange={this.handleFirstName} placeholder='First Name'/>
