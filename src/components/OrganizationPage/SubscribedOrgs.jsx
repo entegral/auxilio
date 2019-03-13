@@ -146,7 +146,7 @@ class SubscribedOrgs extends React.Component {
                     actions={
                       <div>
                         <Button flat modal="close" waves="light">Close</Button>
-                        <Button onClick={this.handleCreateOrg} flat waves="light" type="submit" name="action">Create<Icon className="material-icons right">Create</Icon></Button>
+                        <Button onClick={this.handleCreateOrg} flat waves="light" type="submit" name="action">Create<Icon className="material-icons right">create</Icon></Button>
                       </div>}>
                     <form>
                       <input style={inputStyle} type="text" value={this.state._org_name} onChange={this.handleOrgName} placeholder='Organization Name' />
