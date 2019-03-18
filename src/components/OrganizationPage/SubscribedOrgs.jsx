@@ -118,12 +118,9 @@ class SubscribedOrgs extends React.Component {
                     </form>
                     <h6>Public Orgs With Open Enrollment</h6>
                     <div style={listStyleChild}>
-                      {this.props.suggestedOrgList.map((org) =>
-                        <AddOrganization
-                          org={org}
-                          key={org.uid}
-                          addOrg={this.handleAddSuggestedOrg} />
-                      )}
+                    <AddOrganization
+                      orgList={this.props.orgList}
+                      addOrg={this.handleAddSuggestedOrg} />
                     </div>
                   </Modal>
                 </h6> 
