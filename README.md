@@ -3,6 +3,7 @@
 #### by Robert Bruce
 
 Latest Deployment can be found [here](https://heretoauxilio.firebaseapp.com/?action=#/profile).
+This project requires the use of the [Auxilio Api Server](https://github.com/entegral/auxilio-api-server). The latest deployment of this project uses a free Heroku tier, so your login/signup may experience a 4-5 second delay as the dyno wakes from sleep.
 
 ## Project Proposal
 
@@ -19,23 +20,6 @@ Auxilio is here to help you manage your workforce. It provides you with a platfo
       * Traditional application style
       * Registered for an open-signup process
       * Special appointment
-
-## Planned State
-
-### Login - Stateful Presentational Component
-This component will need to be stateful due to the nature of the login process I have chosen. The component will store a user's email and password (and password confirmation if the user is new) and will have to make an initial API call to firebase to receive their fb-issued UID. This UID will then be used to make a second API call to a Ruby on Rails server, used to host the complex relational data used internally.
-
-### Profile - Stateful Container Component
-This component will also need to be stateful so it can pass down the relevant user-information displayed within its presentational child-components. 
-
-### Organization - Stateful Container Component
-This component will need to be stateful because it will request information from the RoR server that is relevant to the organization it represents (i.e. updates, Managers, Departments, etc.). It will likely have both presentational and container child-components.
-
-### Header - Stateful Presentational Component
-This component will be stateful so it can properly detect/display relevant links based upon the user's logged-in status and permission access-level.
-
-### App - Stateless Container Component
-This component could be used statefully, however, most of its child components have different concerns and can be hooked directly to their relevant state-slices.
 
 ## List the absolute minimum features the project requires to meet this purpose or goal:
 
