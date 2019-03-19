@@ -76,25 +76,23 @@ Only Manager and those in the Admins department can add posts to the Organizatio
 ### What tools, frameworks, libraries, APIs, modules and/or other resources (whatever is specific to your track, and your language) will you use to create this MVP? List them all here. Be specific.
 * React
 * Redux
-* Rails - stretch goal
+* Rails
+* react-materialize
+* Firebase Auth
 
 ### If you finish developing the minimum viable product (MVP) with time to spare, what will you work on next? Describe these features here: Be specific.
 
-* Data persistence
-* manipulation of data and generation of reports based on existing data
-* API Security
+* manipulation of data with json 'actions' (i.e. generation of reports based on persisted data)
+* API Security (JWT)
 * Oauth
 * cycling API keys
-* include api calls to manipulate data server-side with functions
-* include api calls for CRUD methods
+* Code Splitting
+* Making a Progressive Web App
 
 ### What additional tools, frameworks, libraries, APIs, or other resources will these additional features require?
 
-* Rails API Server
-* Gems
-  * CanCanCan
-  * Devise
-  * ReactOnRails
+* Rails controller methods
+* Possibly some gems providing a permissions system 
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
