@@ -1,5 +1,5 @@
 import React from 'react'
-import { headerDiv, headerStyle, listStyleChild, listStyleParent } from '../../helpers/jsStyleObjects';
+import {  listStyleParent } from '../../helpers/jsStyleObjects';
 import { Button, Icon } from 'react-materialize';
 
 function AddOrganization ({ org, addOrg }){

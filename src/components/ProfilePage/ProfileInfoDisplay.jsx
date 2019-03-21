@@ -26,6 +26,10 @@ class ProfileInfoDisplay extends React.Component {
     this.timerID = setTimeout(()=>this.fillKnownData(), 1000);
   }
 
+  componentWillUnmount(){
+    clearTimeout(this.timerID);
+  }
+
   fillKnownData(){
     this.setState(
       {

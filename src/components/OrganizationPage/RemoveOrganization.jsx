@@ -1,7 +1,7 @@
 import React from 'react';
 import {Button, Icon} from 'react-materialize';
 
-function Organization({ org, removeOrg }) {
+function RemoveOrganization({ org, removeOrg }) {
   
   const orgDivStyle = {
     backgroundColor: '#838383',
@@ -33,4 +33,4 @@ function Organization({ org, removeOrg }) {
   
 };
 
-export default Organization;
+export default RemoveOrganization;

@@ -1,12 +1,26 @@
 import React from 'react'
-import Organization from './Organization';
+import RemoveOrganization from './RemoveOrganization';
 import AddOrganization from './AddOrganization'
 import { headerDiv, headerStyle, listStyleChild } from '../../helpers/jsStyleObjects';
 import { Col, Row, Button, Icon, Modal } from 'react-materialize';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import { addExistingOrgToUser, addNewOrgToUser, removeOrgFromUser, getPublicOrgs } from '../../apis/auxilioServerApi';
+import { addExistingOrgToUser, addNewOrgToUser, removeOrgFromUser } from '../../apis/auxilioServerApi';
 import { updateUserOrgAction, updateSuggestedOrgActions } from '../../actions/organizationActions';
+
+const RemoveOrgList = (props) => {
+  if (props.orgList && props.orgList.length > 0) {
+    return (
+      props.orgList.map((org) =>
+      <RemoveOrganization 
+      org={org} 
+      key={org.uid}
+      removeOrg={props.onRemoveOrgFromUser}/>
+      ))
+    } else { 
+    return "no subscribed orgs yet"
+  }
+}
 
 class SubscribedOrgs extends React.Component {
   
@@ -39,7 +53,7 @@ class SubscribedOrgs extends React.Component {
   }
 
   handleAddOrg(){
-    addExistingOrgToUser(this.props.userAuthData.uid, this.state._org_uid)
+    addExistingOrgToUser(this.props.userAuthData.uid, this.state._org_uid, this.state._org_password)
       .then((newUserOrgs)=>{
         this.props.dispatch(updateUserOrgAction(newUserOrgs));
         return <Redirect to='#/organizations' />
@@ -56,7 +70,7 @@ class SubscribedOrgs extends React.Component {
   }
 
   handleCreateOrg(){
-    addNewOrgToUser(this.props.userAuthData.uid, this.state._org_name)
+    addNewOrgToUser(this.props.userAuthData.uid, this.state._org_name, this.state._org_password)
       .then((newUserSubscribedOrgs)=>{
         this.props.dispatch(updateUserOrgAction(newUserSubscribedOrgs));
         this.props.dispatch(updateSuggestedOrgActions(newUserSubscribedOrgs));
@@ -92,7 +106,7 @@ class SubscribedOrgs extends React.Component {
 
     
     if (this.props.userAuthData && this.props.userAuthData.uid){
-      this.props.orgList.length === 0 ? message = 'You haven\' added any organizations yet.' : message = 'Subscriptions';
+      this.props.subscribedOrgList.length === 0 ? message = 'You haven\' added any organizations yet.' : message = 'Subscriptions';
       return (
         <React.Fragment>
           <div style={headerDiv}>
@@ -110,7 +124,7 @@ class SubscribedOrgs extends React.Component {
                     actions={
                       <div>
                         <Button flat modal="close" waves="light">Close</Button>
-                        <Button onClick={this.handleAddOrg} flat waves="light" type="submit" name="action">Add<Icon className="material-icons right">add</Icon></Button>
+                        <Button onClick={this.handleAddOrg} flat waves="light" type="submit" name="action">Search and Add<Icon className="material-icons right">add</Icon></Button>
                       </div>}>
                     <form>
                       <input style={inputStyle} type="text" value={this.state._org_uid} onChange={this.handleOrgUid} placeholder='Org ID' />
@@ -127,12 +141,9 @@ class SubscribedOrgs extends React.Component {
                     </div>
                   </Modal>
                 </h6> 
-                {this.props.orgList.map((org) =>
-                  <Organization 
-                    org={org} 
-                    key={org.uid}
-                    removeOrg={this.handleRemoveOrgFromUser}/>
-                )}
+                <RemoveOrgList 
+                  orgList={this.props.subscribedOrgList} 
+                  onRemoveOrgFromUser={this.handleRemoveOrgFromUser} />
               </div>
             </Col>
 
@@ -165,14 +176,13 @@ class SubscribedOrgs extends React.Component {
     } else {
       return <Redirect to='/'/>
     }
-    
 
   }
 };
 
 const mapPropsToState = state => {
   return {
-    orgList: state.orgs.subscribed,
+    subscribedOrgList: state.orgs.subscribed,
     suggestedOrgList: state.orgs.suggested,
     userAuthData: state.userAuthData
   }
