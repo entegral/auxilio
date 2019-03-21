@@ -9,28 +9,26 @@ function AddOrganization ({ orgList, addOrg }){
     padding: '5px'
   }
 
-  function onAddOrg(){
-    addOrg(org.uid);
-  }
+  const onAddOrg = index => 
+    addOrg(orgList[index].uid);
+  
+  console.log('orgList',orgList);
 
   return(
 
-    { this.props.orgList.map((org) =>
-      <div style={listStyleParent}>
-        {org.name}
-        <Button onClick={onAddOrg}><Icon>add</Icon></Button>
-      </div>
-      )
-    }
     <Collapsible accordion defaultActiveKey={1}>
-      <CollapsibleItem header='First' icon='filter_drama'>
-        Lorem ipsum dolor sit amet.
-      </CollapsibleItem>
-          
-    </Collapsible>
 
-    <div style={suggestedOrgStyle}>
-    </div>
+      { orgList.map((org, index) => {
+        console.log('org', org)
+        return (
+        <CollapsibleItem header={org.name} icon='organization' key={index}>
+          This org is named {org.name}.
+          <Button onClick={onAddOrg(index)}><Icon>add</Icon></Button>
+
+        </CollapsibleItem>)}
+      )};
+
+    </Collapsible>
   );
 };
 
