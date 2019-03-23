@@ -49,22 +49,37 @@ export function getUserOrgs(requester_uid) {
 
 export function addExistingOrgToUser(requester_uid, org_uid, org_password = null) {
   const action = 'addExistingOrgToUser';
-  let passString;
-  org_password ? passString = `&org_password=${org_password}` : passString = '';
-  return fetch(`${link}userActions?requester_uid=${requester_uid}&org_uid=${org_uid}${passString}&apiAction=${action}`, {
-    method: 'POST'
-  }).then((response) => {
+  return fetch(`${link}userActions`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify( {
+      requester_uid: requester_uid,
+      org_uid: org_uid,
+      org_password: org_password,
+      apiAction: action
+     })
+  }).then((response)=>{
     return response.json();
-  });
+  })
 }
 
 export function addNewOrgToUser(requester_uid, org_name, org_password = null) {
   const org_uid = v4();
   const action = 'addNewOrgToUser'
-  let passString;
-  org_password ? passString = `&org_password=${org_password}` : passString = '';
-  return fetch(`${link}userActions?requester_uid=${requester_uid}&org_uid=${org_uid}&org_name=${org_name}${passString}&apiAction=${action}`, {
-    method: 'POST'
+  return fetch(`${link}userActions`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify( {
+      requester_uid: requester_uid,
+      org_uid: org_uid,
+      org_name: org_name,
+      org_password: org_password,
+      apiAction: action
+     })
   }).then((response) => {
     return response.json();
   });
@@ -72,8 +87,16 @@ export function addNewOrgToUser(requester_uid, org_name, org_password = null) {
 
 export function removeOrgFromUser(requester_uid, org_uid) {
   const action = 'removeOrgFromUser'
-  return fetch(`${link}userActions?requester_uid=${requester_uid}&org_uid=${org_uid}&apiAction=${action}`, {
-    method: 'POST'
+  return fetch(`${link}userActions`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify( {
+      requester_uid: requester_uid,
+      org_uid: org_uid,
+      apiAction: action
+     })
   }).then((response) => {
     return response.json();
   });
@@ -81,8 +104,15 @@ export function removeOrgFromUser(requester_uid, org_uid) {
 
 export function getPublicOrgs(requester_uid) {
   const action = 'getPublicOrgs'
-  return fetch(`${link}userActions?requester_uid=${requester_uid}&apiAction=${action}`, {
-    method: 'POST'
+  return fetch(`${link}userActions`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify( {
+      requester_uid: requester_uid,
+      apiAction: action
+     })
   }).then((response) => {
     return response.json();
   });

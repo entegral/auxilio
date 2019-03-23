@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { addExistingOrgToUser, addNewOrgToUser, removeOrgFromUser } from '../../apis/auxilioServerApi';
 import { updateUserOrgAction, updateSuggestedOrgActions } from '../../actions/organizationActions';
+import { errorAction } from '../../actions/errorActions';
 
 const RemoveOrgList = (props) => {
   if (props.orgList && props.orgList.length > 0) {
@@ -54,19 +55,41 @@ class SubscribedOrgs extends React.Component {
 
   handleAddOrg(){
     addExistingOrgToUser(this.props.userAuthData.uid, this.state._org_uid, this.state._org_password)
+      .then((response)=>{
+        if (response.error){
+          throw response;
+        } else {
+          return response;
+        }
+      })
       .then((newUserOrgs)=>{
         this.props.dispatch(updateUserOrgAction(newUserOrgs));
+        this.props.dispatch(errorAction(''));
         return <Redirect to='#/organizations' />
+      })
+      .catch((error)=>{
+        this.props.dispatch(errorAction(error.message))
       });
   }
 
   handleAddSuggestedOrg(org_uid){
     addExistingOrgToUser(this.props.userAuthData.uid, org_uid)
+      .then((response)=>{
+        if (response.error){
+          throw response;
+        } else {
+          return response;
+        }
+      })
       .then((newUserOrgs) => {
         this.props.dispatch(updateUserOrgAction(newUserOrgs));
+        this.props.dispatch(errorAction(''));
         return <Redirect to='#/organizations' />
-      });
-
+      })
+      .catch((error)=>{
+        console.log('err thrown and caught')
+        this.props.dispatch(errorAction(error.message))
+      })
   }
 
   handleCreateOrg(){
@@ -102,6 +125,10 @@ class SubscribedOrgs extends React.Component {
       padding: '5px'
     };
 
+    const errorMessage = {
+      color: 'red'
+    }
+
     let message;
 
     
@@ -128,8 +155,9 @@ class SubscribedOrgs extends React.Component {
                       </div>}>
                     <form>
                       <input style={inputStyle} type="text" value={this.state._org_uid} onChange={this.handleOrgUid} placeholder='Org ID' />
-                      <input style={inputStyle} type="text" value={this.state._org_password} onChange={this.handleOrgPassword} placeholder='Org Password' />
+                      <input style={inputStyle} type="password" value={this.state._org_password} onChange={this.handleOrgPassword} placeholder='Org Password' />
                     </form>
+                    <div style={errorMessage}>{this.props.errorMessage.message ? this.props.errorMessage.message : ''}</div>
                     <h6>Public Orgs With Open Enrollment</h6>
                     <div style={listStyleChild}>
                       {this.props.suggestedOrgList.map((org) =>
@@ -161,7 +189,7 @@ class SubscribedOrgs extends React.Component {
                       </div>}>
                     <form>
                       <input style={inputStyle} type="text" value={this.state._org_name} onChange={this.handleOrgName} placeholder='Organization Name' />
-                      <input style={inputStyle} type="text" value={this.state._org_password} onChange={this.handleOrgPassword} placeholder='Org Password (optional)' />
+                      <input style={inputStyle} type="password" value={this.state._org_password} onChange={this.handleOrgPassword} placeholder='Org Password (optional)' />
                     </form>
                   </Modal>
                 </h6> 
@@ -184,7 +212,8 @@ const mapPropsToState = state => {
   return {
     subscribedOrgList: state.orgs.subscribed,
     suggestedOrgList: state.orgs.suggested,
-    userAuthData: state.userAuthData
+    userAuthData: state.userAuthData,
+    errorMessage: state.errors
   }
 }
 
