@@ -42,14 +42,29 @@ class Login extends React.Component {
       .then((action)=>{this.props.dispatch(action)})
       .then(()=>{
         getUserData(this.props.userAuthData.uid)
-          .then((action) => { this.props.dispatch(getUserDataAction(action)) })
-          .catch((loginError) => { this.props.dispatch(errorAction('error in getUserDataAction')) });
+          .then((action) => { 
+            if (action.error){
+              throw action;
+            }
+            this.props.dispatch(getUserDataAction(action)) 
+          })
+          .catch((loginError) => { this.props.dispatch(errorAction(loginError.message)) });
         getUserOrgs(this.props.userAuthData.uid)
-          .then((userOrgs) => { this.props.dispatch(getUserOrgsAction(userOrgs)) })
-          .catch((loginError) => { this.props.dispatch(errorAction('error in getUserOrgs')) });
+          .then((userOrgs) => { 
+            if (userOrgs.error){
+              throw userOrgs;
+            }
+            this.props.dispatch(getUserOrgsAction(userOrgs)) 
+          })
+          .catch((loginError) => { this.props.dispatch(errorAction(loginError.message)) });
         getPublicOrgs(this.props.userAuthData.uid)
-          .then((suggestedOrgs) => { this.props.dispatch(updateSuggestedOrgActions(suggestedOrgs)) })
-          .catch((loginError) => { this.props.dispatch(errorAction('error in getPublicOrgs')) });
+          .then((suggestedOrgs) => { 
+            if (suggestedOrgs.error){
+              throw suggestedOrgs;
+            }
+            this.props.dispatch(updateSuggestedOrgActions(suggestedOrgs)) 
+          })
+          .catch((loginError) => { this.props.dispatch(errorAction(loginError.message)) });
       })
       .catch((loginError) => {this.props.dispatch(errorAction(loginError.message))});
   };
