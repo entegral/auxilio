@@ -1,7 +1,7 @@
 import v4 from 'uuid';
 
-// const link = 'https://desolate-plains-77764.herokuapp.com/';
-const link = 'http://localhost:3000/';
+const link = 'https://gentle-bayou-70994.herokuapp.com/';
+// const link = 'http://localhost:3000/';
 
 export function getUserData(uid = '') {
   let jsonResponse;
@@ -49,17 +49,29 @@ export function getUserOrgs(requester_uid) {
 
 export function addExistingOrgToUser(requester_uid, org_uid, org_password = null) {
   const action = 'addExistingOrgToUser';
+  let object = {}
+  if (org_password){
+    object = {
+      requester_uid: requester_uid,
+      org_uid: org_uid,
+      org_password: org_password,
+      apiAction: action
+     }
+  } else {
+    object = {
+      requester_uid: requester_uid,
+      org_uid: org_uid,
+      apiAction: action
+     }
+  }
+
+
   return fetch(`${link}userActions`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify( {
-      requester_uid: requester_uid,
-      org_uid: org_uid,
-      org_password: org_password,
-      apiAction: action
-     })
+    body: JSON.stringify(object)
   }).then((response)=>{
     return response.json();
   })
@@ -68,18 +80,32 @@ export function addExistingOrgToUser(requester_uid, org_uid, org_password = null
 export function addNewOrgToUser(requester_uid, org_name, org_password = null) {
   const org_uid = v4();
   const action = 'addNewOrgToUser'
-  return fetch(`${link}userActions`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify( {
+
+  let object = {};
+
+  if (org_password){
+    object = {
       requester_uid: requester_uid,
       org_uid: org_uid,
       org_name: org_name,
       org_password: org_password,
       apiAction: action
-     })
+     }
+  } else {
+    object = {
+      requester_uid: requester_uid,
+      org_uid: org_uid,
+      org_name: org_name,
+      apiAction: action
+     }
+  }
+
+  return fetch(`${link}userActions`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify( object )
   }).then((response) => {
     return response.json();
   });
@@ -87,6 +113,7 @@ export function addNewOrgToUser(requester_uid, org_name, org_password = null) {
 
 export function removeOrgFromUser(requester_uid, org_uid) {
   const action = 'removeOrgFromUser'
+  
   return fetch(`${link}userActions`, {
     method: 'POST',
     headers: {
