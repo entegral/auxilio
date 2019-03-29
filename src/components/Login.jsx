@@ -62,7 +62,8 @@ class Login extends React.Component {
             if (suggestedOrgs.error){
               throw suggestedOrgs;
             }
-            this.props.dispatch(updateSuggestedOrgActions(suggestedOrgs)) 
+            this.props.dispatch(updateSuggestedOrgActions(suggestedOrgs));
+            this.props.dispatch(errorAction(null)); 
           })
           .catch((loginError) => { this.props.dispatch(errorAction(loginError.message)) });
       })
