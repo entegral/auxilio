@@ -1,33 +1,40 @@
 import React, { Component } from 'react';
 import { getOrgPosts } from '../../apis/auxilioServerApi';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
+
 
 const DisplayPosts = (props) => {
-  return (
-    <div>
-      <h2>Recent Posts</h2>
-      {props.posts.map((post)=>
-        <div>
-          <h3>{post.title}</h3>
-          <p>{post.body}</p>
-        </div>
-        )}
-    </div>
-  );
+
+  if (props.posts && props.posts.length > 0){
+    return (
+      <div>
+        <h2>Recent Posts</h2>
+        {props.posts.map((post)=>
+          <div key={post.uid}>
+            <h3>{post.title}</h3>
+            <p>{post.body}</p>
+          </div>
+          )}
+      </div>
+    );
+  } else {
+    return <div>Loading...</div>
+  }
 }
 
 export class OrgHome extends Component {
   constructor(props){
     super(props);
     this.state = {
-      org_uid: this.props.org_uid,
-      postList: []
+      postList: null
     };
+    this.updatePostsList = this.updatePostsList.bind(this)
+  }
 
-
-    window.onload = (() => { 
-      this.updateTimer = setInterval(this.updatePostsList(), 60000);
-    });
+  componentDidMount() {
+    this.initialTimeout = setTimeout(()=>this.updatePostsList(), 500);
+    this.updateTimer = setInterval(()=>this.updatePostsList(), 8000);
   }  
 
   componentWillUnmount(){
@@ -35,25 +42,33 @@ export class OrgHome extends Component {
   }
   
   updatePostsList(){
-    getOrgPosts(this.props.currentUser, this.org_uid).then((orgPosts)=>{
-      this.setState( {...this.state, postList: orgPosts})
-    })
+    getOrgPosts(this.props.currentUser.uid, this.props.org_uid).then((orgPosts)=>{
+      console.log('orgPosts', orgPosts)
+      this.setState( {...this.state, postList: orgPosts[0]})
+    });
+    console.log('state', this.state)
   }
 
 
   render() {
-    return (
-      <div>
-        <DisplayPosts posts={this.state.postList} />
-      </div>
-    )
+    if (this.props.currentUser.uid){
+      return (
+        <div>
+          <DisplayPosts posts={this.state.postList} />
+        </div>
+      )
+    } else {
+      return (
+        <Redirect to='/'/>
+        )
+    }
   }
 }
 
 const mapStateToProps = state => {
   return {
     currentUser: state.userAuthData,
-
+    org_uid: state.orgs.currentOrgUid
   }
 }
 

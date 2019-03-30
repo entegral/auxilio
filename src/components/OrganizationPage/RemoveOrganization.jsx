@@ -40,10 +40,10 @@ function RemoveOrganization({ org, removeOrg, dispatch }) {
       <div style={orgDivStyle}>
         <div style = {styleGroup}>
           <h6 style={titleStyle}>{ org.name }</h6>
-          <Button style={styleGroup} icon='arrow_forward' onClick={navigateTo}><Link style={titleStyle} to='/organization'>Go</Link></Button>
+          <Link style={titleStyle} to='/organization'><Button style={styleGroup} flat icon='arrow_forward' onClick={navigateTo}>Go</Button></Link>
         </div>
       
-        <Button style={styleGroup} icon='delete' onClick={onRemoveOrg}>Remove</Button>
+        <Button style={styleGroup} flat icon='delete' onClick={onRemoveOrg}>Remove</Button>
       </div>
       
     </React.Fragment>
