@@ -1,7 +1,7 @@
 import v4 from 'uuid';
 
-const link = 'https://gentle-bayou-70994.herokuapp.com/';
-// const link = 'http://localhost:3000/';
+// const link = 'https://gentle-bayou-70994.herokuapp.com/';
+const link = 'http://localhost:3000/';
 
 export function getUserData(uid = '') {
   let jsonResponse;
@@ -138,6 +138,23 @@ export function getPublicOrgs(requester_uid) {
     },
     body: JSON.stringify( {
       requester_uid: requester_uid,
+      apiAction: action
+     })
+  }).then((response) => {
+    return response.json();
+  });
+}
+
+export function getOrgPostsList(requester_uid, org_uid){
+  const action = 'getOrgPostList';
+  return fetch(`${link}userActions`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify( {
+      requester_uid: requester_uid,
+      org_uid: org_uid,
       apiAction: action
      })
   }).then((response) => {

@@ -1,4 +1,3 @@
-import { getUserOrgs } from '../apis/auxilioServerApi';
 
 export function getUserOrgsAction(userOrgs){
   return {

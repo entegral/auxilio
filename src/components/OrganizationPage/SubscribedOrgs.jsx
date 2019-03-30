@@ -6,7 +6,7 @@ import { Col, Row, Button, Icon, Modal } from 'react-materialize';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { addExistingOrgToUser, addNewOrgToUser, removeOrgFromUser } from '../../apis/auxilioServerApi';
-import { updateUserOrgAction, updateSuggestedOrgActions } from '../../actions/organizationActions';
+import { updateUserOrgAction } from '../../actions/organizationActions';
 import { errorAction } from '../../actions/errorActions';
 
 const RemoveOrgList = (props) => {
@@ -65,7 +65,7 @@ class SubscribedOrgs extends React.Component {
       .then((newUserOrgs)=>{
         this.props.dispatch(updateUserOrgAction(newUserOrgs));
         this.props.dispatch(errorAction(''));
-        return <Redirect to='#/organizations' />
+        return <Redirect to='#/my_organizations' />
       })
       .catch((error)=>{
         this.props.dispatch(errorAction(error.message))
@@ -84,7 +84,7 @@ class SubscribedOrgs extends React.Component {
       .then((newUserOrgs) => {
         this.props.dispatch(updateUserOrgAction(newUserOrgs));
         this.props.dispatch(errorAction(''));
-        return <Redirect to='#/organizations' />
+        return <Redirect to='#/my_organizations' />
       })
       .catch((error)=>{
         console.log('err thrown and caught')
@@ -96,8 +96,7 @@ class SubscribedOrgs extends React.Component {
     addNewOrgToUser(this.props.userAuthData.uid, this.state._org_name, this.state._org_password)
       .then((newUserSubscribedOrgs)=>{
         this.props.dispatch(updateUserOrgAction(newUserSubscribedOrgs));
-        this.props.dispatch(updateSuggestedOrgActions(newUserSubscribedOrgs));
-        return <Redirect to='#/organizations' />
+        return <Redirect to='#/my_organizations' />
       })
   }
 
@@ -105,7 +104,7 @@ class SubscribedOrgs extends React.Component {
     removeOrgFromUser(this.props.userAuthData.uid, org_uid)
       .then((newUserOrgs)=>{
         this.props.dispatch(updateUserOrgAction(newUserOrgs));
-        return <Redirect to='#/organizations' />
+        return <Redirect to='#/my_organizations' />
       })
   }
 

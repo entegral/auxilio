@@ -1,7 +1,6 @@
 import React from 'react'
 import { listStyleChild } from '../../helpers/jsStyleObjects';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
 import {Button, Modal, Icon} from 'react-materialize';
 import {updateUserData} from '../../apis/auxilioServerApi'
 import {getUserDataAction} from '../../actions/userDataActions';
