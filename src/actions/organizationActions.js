@@ -19,3 +19,10 @@ export function updateSuggestedOrgActions(suggestedOrgs){
     orgs: suggestedOrgs
   };
 };
+
+export function setCurrentOrg(orgUid){
+  return {
+    type: 'SET_CURRENT_ORG',
+    orgUid: orgUid
+  };
+};

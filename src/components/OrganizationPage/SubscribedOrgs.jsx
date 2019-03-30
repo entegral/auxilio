@@ -9,7 +9,7 @@ import { addExistingOrgToUser, addNewOrgToUser, removeOrgFromUser } from '../../
 import { updateUserOrgAction } from '../../actions/organizationActions';
 import { errorAction } from '../../actions/errorActions';
 
-const RemoveOrgList = (props) => {
+const OrgListDisplay = (props) => {
   if (props.orgList && props.orgList.length > 0) {
     return (
       props.orgList.map((org) =>
@@ -168,7 +168,7 @@ class SubscribedOrgs extends React.Component {
                     </div>
                   </Modal>
                 </h6> 
-                <RemoveOrgList 
+                <OrgListDisplay 
                   orgList={this.props.subscribedOrgList} 
                   onRemoveOrgFromUser={this.handleRemoveOrgFromUser} />
               </div>

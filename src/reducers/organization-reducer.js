@@ -15,6 +15,12 @@ export default (state = {}, action) => {
         suggested: action.orgs
       }
       return newState;
+    case 'SET_CURRENT_ORG':
+      newState = {
+        ...state,
+        currentOrgUid: action.orgUid
+      }
+      return newState;
     default:
       return state;
   }

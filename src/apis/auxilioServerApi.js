@@ -145,7 +145,7 @@ export function getPublicOrgs(requester_uid) {
   });
 }
 
-export function getOrgPostsList(requester_uid, org_uid){
+export function getOrgPosts(requester_uid, org_uid){
   const action = 'getOrgPostList';
   return fetch(`${link}userActions`, {
     method: 'POST',

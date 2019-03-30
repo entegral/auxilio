@@ -20,23 +20,6 @@ class Header extends React.Component {
 
   render(){
 
-    const bannerStyleLoggedOut = {
-      display: 'flex',
-      justifyContent: 'Center',
-      alignItems: 'center',
-      backgroundColor: '#505050',
-      width: '100%'
-    }
-
-    const headerStyle = {
-      margin: '5px 5px 5px 20px',
-
-    }
-
-    const headerAnchorStyle = {
-      textDecoration: 'none',
-      color: 'lightgrey'
-    }
 
     const navBarStyle = {
       paddingLeft: '20px'
