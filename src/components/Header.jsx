@@ -46,11 +46,10 @@ class Header extends React.Component {
 
       return (
         <Navbar style={navBarStyle} brand='Auxilio' href='#' right className='grey darken-2'>
+          <NavItem icon='account_box' href='#/profile' > My Feed </NavItem>
           <NavItem icon='account_box' href='#/profile' > My Profile </NavItem>
           <NavItem divider />
-          <NavItem href='#/organizations'>  Organizations</NavItem>
-          <NavItem href='#/departments'>Departments</NavItem>
-          <NavItem href='#/jobs'>Jobs</NavItem>
+          <NavItem href='#/my_organizations'>  Organizations</NavItem>
           <NavItem divider />
           <NavItem onClick={this.signOut}>Sign Out</NavItem>
         </Navbar>

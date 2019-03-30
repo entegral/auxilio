@@ -5,6 +5,7 @@ import Header from './Header';
 import Login from './Login';
 import Profile from './ProfilePage/Profile';
 import SubscribedOrgs from './OrganizationPage/SubscribedOrgs'
+import OrgHome from './OrganizationPage/OrgHome'
 
 function App() {
   return (
@@ -12,8 +13,9 @@ function App() {
       <Header/>
       <Switch>
         <Route exact path='/' component={Login} />
+        <Route exact path='/organization' component={OrgHome} />
         <Route exact path='/profile' component={Profile} />
-        <Route exact path='/organizations' component={SubscribedOrgs} />
+        <Route exact path='/my_organizations' component={SubscribedOrgs} />
       </Switch>
     </React.Fragment>
   );
