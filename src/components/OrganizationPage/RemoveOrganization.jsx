@@ -13,6 +13,7 @@ function RemoveOrganization({ org, removeOrg, dispatch }) {
     borderRadius: '3px',
     display: 'flex',
     justifyContent: 'space-between',
+    flexWrap: 'wrap',
     alignItems: 'center'
   }
 
