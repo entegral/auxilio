@@ -3,7 +3,9 @@
 #### by Robert Bruce
 
 Latest Deployment can be found [here](https://heretoauxilio.firebaseapp.com/?action=#/profile).
-This project requires the use of the [Auxilio Api Server](https://github.com/entegral/auxilio-api-server). The latest deployment of this project uses a free Heroku tier, so your login/signup may experience a 4-5 second delay as the dyno wakes from sleep.
+This project requires the use of the [Auxilio Api Server](https://github.com/entegral/auxilio-api-server). The latest deployment of this project uses a free Heroku tier, so your login/signup may experience a 4-5 second delay as the dyno wakes from sleep. 
+
+#### This app is a work-in-progress and its back-end will be migrated to AWS' API-Gateway, Lambda and DynamoDB.
 
 ## Project Proposal
 
